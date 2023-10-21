@@ -1,4 +1,4 @@
-﻿using PSI_TestProject_API.Models;
+﻿
 
 namespace PSI_TestProject_API.Dto
 {
@@ -13,7 +13,7 @@ namespace PSI_TestProject_API.Dto
         public DateTime? PaymentDate { get; set; }
         public int receiptId { get; set; }
         public bool IsPaymentCompleted { get; set; }
-        public Services? Service { get; set; }
-        public Clients? Client { get; set; }
+        public ServicesDto? Service { get; set; }
+        public ClientsDto? Client { get; set; }
     }
 }
