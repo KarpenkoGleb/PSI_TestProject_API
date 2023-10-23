@@ -5,7 +5,7 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSI_TestProject_API", "PSI_TestProject_API\PSI_TestProject_API.csproj", "{B53436D6-AE21-4405-A1C8-5D4C489A6D57}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSI_TestProject_WinForms", "..\PSI_TestProject_WinForms\PSI_TestProject_WinForms\PSI_TestProject_WinForms.csproj", "{E1BB656A-9DD6-419E-B736-54F0E8E32ECF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSI_WinForms", "PSI_WinForms\PSI_WinForms.csproj", "{B9F82384-B542-4058-ABC3-CE5562A2CBFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{B53436D6-AE21-4405-A1C8-5D4C489A6D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B53436D6-AE21-4405-A1C8-5D4C489A6D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B53436D6-AE21-4405-A1C8-5D4C489A6D57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1BB656A-9DD6-419E-B736-54F0E8E32ECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1BB656A-9DD6-419E-B736-54F0E8E32ECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1BB656A-9DD6-419E-B736-54F0E8E32ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1BB656A-9DD6-419E-B736-54F0E8E32ECF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9F82384-B542-4058-ABC3-CE5562A2CBFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F82384-B542-4058-ABC3-CE5562A2CBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F82384-B542-4058-ABC3-CE5562A2CBFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F82384-B542-4058-ABC3-CE5562A2CBFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
