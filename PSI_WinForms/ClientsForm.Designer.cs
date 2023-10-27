@@ -54,7 +54,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 2;
-            panel1.Paint += panel1_Paint;
             // 
             // ClientsDataGrid
             // 
@@ -67,7 +66,6 @@
             ClientsDataGrid.RowTemplate.Height = 25;
             ClientsDataGrid.Size = new Size(720, 220);
             ClientsDataGrid.TabIndex = 3;
-            ClientsDataGrid.CellContentClick += ClientsDataGrid_CellContentClick;
             // 
             // ClientLogin
             // 

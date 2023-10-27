@@ -28,16 +28,6 @@ namespace PSI_WinForms
             mainForm.Show();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void ClientsDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void GetClientsButton_Click(object sender, EventArgs e)
         {
             LoadDataOfClientsAsync();

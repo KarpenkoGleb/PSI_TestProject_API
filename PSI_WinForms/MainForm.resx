@@ -117,7 +117,89 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="LinkToInvoiceDetails.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="LinkToInvoiceDetails.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <metadata name="Id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ServiceId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ClientId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ServiceName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="ClientLogin.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Amount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="CreationDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="PayBefore.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="PaymentDate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ReceiptId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="IsPaymentCompleted.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
 </root>

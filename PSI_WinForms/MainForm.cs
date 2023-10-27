@@ -14,21 +14,16 @@ namespace PSI_WinForms
             LoadDataOfInvoicesAsync();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void closeButton_Click(object sender, EventArgs e)
         {
             Application.Exit();    //  this.Close();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void InvoicesDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //this.Hide();
 
-            var invoiceId = (int)dataGridView1.Rows[e.RowIndex].Cells[0].Value;
+            var invoiceId = (int)InvoicesDataGrid.Rows[e.RowIndex].Cells[1].Value;
 
             //int.tryparse
 
@@ -80,7 +75,7 @@ namespace PSI_WinForms
 
                 }).ToList();
 
-                dataGridView1.DataSource = customDataView; // Set the data source after data is retrieved.
+                InvoicesDataGrid.DataSource = customDataView; // Set the data source after data is retrieved.
             }
             catch (Exception ex)
             {
@@ -111,9 +106,5 @@ namespace PSI_WinForms
 
         //============== END ==================
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

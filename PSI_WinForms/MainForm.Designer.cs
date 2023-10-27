@@ -29,37 +29,76 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panel1 = new Panel();
-            dataGridView1 = new DataGridView();
-            ClientLogin = new DataGridViewLinkColumn();
+            ViewWithTabs = new TabControl();
+            InvoicesTab = new TabPage();
+            InvoicesDataGrid = new DataGridView();
+            LinkToInvoiceDetails = new DataGridViewImageColumn();
+            Id = new DataGridViewTextBoxColumn();
+            ServiceId = new DataGridViewTextBoxColumn();
+            ClientId = new DataGridViewTextBoxColumn();
+            ServiceName = new DataGridViewTextBoxColumn();
+            ClientLogin = new DataGridViewTextBoxColumn();
+            Amount = new DataGridViewTextBoxColumn();
+            CreationDate = new DataGridViewTextBoxColumn();
+            PayBefore = new DataGridViewTextBoxColumn();
+            PaymentDate = new DataGridViewTextBoxColumn();
+            ReceiptId = new DataGridViewTextBoxColumn();
+            IsPaymentCompleted = new DataGridViewCheckBoxColumn();
+            ClientsTab = new TabPage();
+            ServicesTab = new TabPage();
             GetInvoicesButton = new Button();
             panel2 = new Panel();
             closeButton = new Label();
             label1 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ViewWithTabs.SuspendLayout();
+            InvoicesTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)InvoicesDataGrid).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 46, 54);
-            panel1.Controls.Add(dataGridView1);
+            panel1.Controls.Add(ViewWithTabs);
             panel1.Controls.Add(GetInvoicesButton);
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(699, 422);
+            panel1.Size = new Size(800, 500);
             panel1.TabIndex = 1;
-            panel1.Paint += panel1_Paint;
             // 
-            // dataGridView1
+            // ViewWithTabs
             // 
-            dataGridView1.BackgroundColor = SystemColors.MenuBar;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ClientLogin });
+            ViewWithTabs.Controls.Add(InvoicesTab);
+            ViewWithTabs.Controls.Add(ClientsTab);
+            ViewWithTabs.Controls.Add(ServicesTab);
+            ViewWithTabs.Location = new Point(29, 111);
+            ViewWithTabs.Name = "ViewWithTabs";
+            ViewWithTabs.SelectedIndex = 0;
+            ViewWithTabs.Size = new Size(735, 287);
+            ViewWithTabs.TabIndex = 2;
+            // 
+            // InvoicesTab
+            // 
+            InvoicesTab.Controls.Add(InvoicesDataGrid);
+            InvoicesTab.Location = new Point(4, 24);
+            InvoicesTab.Name = "InvoicesTab";
+            InvoicesTab.Padding = new Padding(3);
+            InvoicesTab.Size = new Size(727, 259);
+            InvoicesTab.TabIndex = 0;
+            InvoicesTab.Text = "Счета";
+            InvoicesTab.UseVisualStyleBackColor = true;
+            // 
+            // InvoicesDataGrid
+            // 
+            InvoicesDataGrid.BackgroundColor = SystemColors.MenuBar;
+            InvoicesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            InvoicesDataGrid.Columns.AddRange(new DataGridViewColumn[] { LinkToInvoiceDetails, Id, ServiceId, ClientId, ServiceName, ClientLogin, Amount, CreationDate, PayBefore, PaymentDate, ReceiptId, IsPaymentCompleted });
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.MenuBar;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -67,30 +106,124 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.Location = new Point(38, 114);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(621, 220);
-            dataGridView1.TabIndex = 3;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            dataGridView1.CellContentDoubleClick += dataGridView1_CellContentClick;
+            InvoicesDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            InvoicesDataGrid.Dock = DockStyle.Fill;
+            InvoicesDataGrid.Location = new Point(3, 3);
+            InvoicesDataGrid.Name = "InvoicesDataGrid";
+            InvoicesDataGrid.RowTemplate.Height = 25;
+            InvoicesDataGrid.Size = new Size(721, 253);
+            InvoicesDataGrid.TabIndex = 3;
+            InvoicesDataGrid.CellContentClick += InvoicesDataGrid_CellContentClick;
+            InvoicesDataGrid.CellContentDoubleClick += InvoicesDataGrid_CellContentClick;
+            // 
+            // LinkToInvoiceDetails
+            // 
+            LinkToInvoiceDetails.HeaderText = "";
+            LinkToInvoiceDetails.Image = (Image)resources.GetObject("LinkToInvoiceDetails.Image");
+            LinkToInvoiceDetails.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            LinkToInvoiceDetails.Name = "LinkToInvoiceDetails";
+            LinkToInvoiceDetails.Resizable = DataGridViewTriState.True;
+            LinkToInvoiceDetails.SortMode = DataGridViewColumnSortMode.Automatic;
+            LinkToInvoiceDetails.Width = 40;
+            // 
+            // Id
+            // 
+            Id.DataPropertyName = "Id";
+            Id.HeaderText = "InvoiceId";
+            Id.Name = "Id";
+            Id.Visible = false;
+            // 
+            // ServiceId
+            // 
+            ServiceId.DataPropertyName = "ServiceId";
+            ServiceId.HeaderText = "ServiceId";
+            ServiceId.Name = "ServiceId";
+            ServiceId.Visible = false;
+            // 
+            // ClientId
+            // 
+            ClientId.DataPropertyName = "ClientId";
+            ClientId.HeaderText = "ClientId";
+            ClientId.Name = "ClientId";
+            ClientId.Visible = false;
+            // 
+            // ServiceName
+            // 
+            ServiceName.DataPropertyName = "ServiceName";
+            ServiceName.HeaderText = "Сервис";
+            ServiceName.Name = "ServiceName";
+            ServiceName.Resizable = DataGridViewTriState.True;
+            ServiceName.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // ClientLogin
             // 
             ClientLogin.DataPropertyName = "ClientLogin";
-            ClientLogin.HeaderText = "ClientLogin";
-            ClientLogin.LinkBehavior = LinkBehavior.HoverUnderline;
+            ClientLogin.HeaderText = "Клиент";
             ClientLogin.Name = "ClientLogin";
             ClientLogin.Resizable = DataGridViewTriState.True;
-            ClientLogin.SortMode = DataGridViewColumnSortMode.Automatic;
-            ClientLogin.Text = "AppearanceText";
             ClientLogin.ToolTipText = "Click to go to Clients";
+            // 
+            // Amount
+            // 
+            Amount.DataPropertyName = "Amount";
+            Amount.HeaderText = "Сумма";
+            Amount.Name = "Amount";
+            // 
+            // CreationDate
+            // 
+            CreationDate.DataPropertyName = "CreationDate";
+            CreationDate.HeaderText = "Дата выставления";
+            CreationDate.Name = "CreationDate";
+            // 
+            // PayBefore
+            // 
+            PayBefore.DataPropertyName = "PayBefore";
+            PayBefore.HeaderText = "Оплатить до";
+            PayBefore.Name = "PayBefore";
+            // 
+            // PaymentDate
+            // 
+            PaymentDate.DataPropertyName = "PaymentDate";
+            PaymentDate.HeaderText = "Дата оплаты";
+            PaymentDate.Name = "PaymentDate";
+            // 
+            // ReceiptId
+            // 
+            ReceiptId.DataPropertyName = "ReceiptId";
+            ReceiptId.HeaderText = "Номер квитанции";
+            ReceiptId.Name = "ReceiptId";
+            // 
+            // IsPaymentCompleted
+            // 
+            IsPaymentCompleted.DataPropertyName = "IsPaymentCompleted";
+            IsPaymentCompleted.HeaderText = "Статус оплаты";
+            IsPaymentCompleted.Name = "IsPaymentCompleted";
+            IsPaymentCompleted.Resizable = DataGridViewTriState.True;
+            IsPaymentCompleted.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // ClientsTab
+            // 
+            ClientsTab.Location = new Point(4, 24);
+            ClientsTab.Name = "ClientsTab";
+            ClientsTab.Padding = new Padding(3);
+            ClientsTab.Size = new Size(727, 259);
+            ClientsTab.TabIndex = 1;
+            ClientsTab.Text = "Клиенты";
+            ClientsTab.UseVisualStyleBackColor = true;
+            // 
+            // ServicesTab
+            // 
+            ServicesTab.Location = new Point(4, 24);
+            ServicesTab.Name = "ServicesTab";
+            ServicesTab.Size = new Size(727, 259);
+            ServicesTab.TabIndex = 2;
+            ServicesTab.Text = "Сервисы";
+            ServicesTab.UseVisualStyleBackColor = true;
             // 
             // GetInvoicesButton
             // 
             GetInvoicesButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            GetInvoicesButton.Location = new Point(284, 366);
+            GetInvoicesButton.Location = new Point(635, 441);
             GetInvoicesButton.Name = "GetInvoicesButton";
             GetInvoicesButton.Size = new Size(129, 34);
             GetInvoicesButton.TabIndex = 2;
@@ -107,7 +240,7 @@
             panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(699, 90);
+            panel2.Size = new Size(800, 90);
             panel2.TabIndex = 0;
             // 
             // closeButton
@@ -118,7 +251,7 @@
             closeButton.Dock = DockStyle.Right;
             closeButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             closeButton.ForeColor = SystemColors.AppWorkspace;
-            closeButton.Location = new Point(674, 0);
+            closeButton.Location = new Point(775, 0);
             closeButton.Margin = new Padding(2, 0, 2, 0);
             closeButton.Name = "closeButton";
             closeButton.Size = new Size(25, 32);
@@ -135,17 +268,16 @@
             label1.Location = new Point(0, 0);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(699, 90);
+            label1.Size = new Size(800, 90);
             label1.TabIndex = 0;
             label1.Text = "Главный экран";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += label1_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(699, 422);
+            ClientSize = new Size(800, 500);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2);
@@ -153,7 +285,9 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Главный экран";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ViewWithTabs.ResumeLayout(false);
+            InvoicesTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)InvoicesDataGrid).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -165,8 +299,23 @@
         private Panel panel2;
         private Label closeButton;
         private Label label1;
-        private DataGridView dataGridView1;
+        private DataGridView InvoicesDataGrid;
         private Button GetInvoicesButton;
-        private DataGridViewLinkColumn ClientLogin;
+        private DataGridViewImageColumn LinkToInvoiceDetails;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn ServiceId;
+        private DataGridViewTextBoxColumn ClientId;
+        private DataGridViewTextBoxColumn ServiceName;
+        private DataGridViewTextBoxColumn ClientLogin;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn CreationDate;
+        private DataGridViewTextBoxColumn PayBefore;
+        private DataGridViewTextBoxColumn PaymentDate;
+        private DataGridViewTextBoxColumn ReceiptId;
+        private DataGridViewCheckBoxColumn IsPaymentCompleted;
+        private TabControl ViewWithTabs;
+        private TabPage InvoicesTab;
+        private TabPage ClientsTab;
+        private TabPage ServicesTab;
     }
 }

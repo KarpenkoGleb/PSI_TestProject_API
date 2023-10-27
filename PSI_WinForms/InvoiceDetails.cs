@@ -11,6 +11,7 @@ namespace PSI_WinForms
             LoadDataOfInvoiceByAsync(invoiceId);
 
             LoadListDataOfClientsAsync();
+            LoadListDataOfServicesAsync();
 
         }
 
@@ -22,7 +23,19 @@ namespace PSI_WinForms
 
                 ClientsList.SelectedValue = data?.ClientId;
 
-                textBox1.Text = data?.Client.Login; // Set the data source after data is retrieved.
+                ClientTextBox.Text = data?.Client.Name; // Set the data source after data is retrieved.
+
+                PhoneNumTextBox.Text = data?.Client.PhoneNumber;
+
+                EmailTextBox.Text = data?.Client.Email;
+
+                SurnameTextBox.Text = data?.Client.Surname;
+
+                PatronymicTextBox.Text = data?.Client.Patronymic;
+
+                ServiceList.SelectedValue = data?.ServiceId;
+
+
             }
             catch (Exception ex)
             {
@@ -50,6 +63,8 @@ namespace PSI_WinForms
                 }
             }
         }
+
+        //=============     Loading dropdown list of Clients        =================
 
         private async void LoadListDataOfClientsAsync()
         {
@@ -86,5 +101,70 @@ namespace PSI_WinForms
             }
         }
 
+        //====================     END     ====================
+
+
+        //=============     Loading dropdown list of Services    =============
+
+        private async void LoadListDataOfServicesAsync()
+        {
+            try
+            {
+                var data = await GetListDataOfServicesAsync();
+
+                ServiceList.DataSource = data; // Set the data source after data is retrieved.
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private async Task<List<ServicesDTO>> GetListDataOfServicesAsync()
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri("https://localhost:7168/");
+
+                HttpResponseMessage response = await httpClient.GetAsync("api/Services"); // Adjust the URL to match your API's endpoint.
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<List<ServicesDTO>>(content);
+
+                    return data;
+                }
+                else
+                {
+                    throw new Exception("Failed to retrieve data from the API.");
+                }
+            }
+        }
+
+        //=============     END     =================
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();       //this.Close();
+        }
+
+        //============= Moving Screen =================
+
+        Point lastPoint;
+        private void InvoicesDetails_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+        }
+
+        private void InvoicesDetails_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        //=============     END     =================
     }
 }
