@@ -5,28 +5,14 @@ using PSI_WinForms.DTO;
 
 namespace PSI_WinForms
 {
-    public partial class ClientsForm
+    public partial class ServicesForm
     {
-        public ClientsForm()
+        public ServicesForm()
         {
             InitializeComponent();
 
-            LoadDataOfClientsAsync();
+            LoadDataOfServicesAsync();
         }
-
-        //private void ClientsDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    //this.Hide();
-
-        //    var invoiceId = (int)InvoicesDataGrid.Rows[e.RowIndex].Cells[1].Value;
-
-        //    //int.tryparse
-
-        //    InvoiceDetails invoiceDetails = new InvoiceDetails(invoiceId);
-        //    invoiceDetails.Show();
-
-
-        //}
 
         //============= Buttons actions =================
 
@@ -57,6 +43,13 @@ namespace PSI_WinForms
             ServicesForm servicesForm = new ServicesForm();
             servicesForm.Show();
         }
+        private void CreationServiceFormButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            CreationServiceForm serviceDetails = new CreationServiceForm();
+            serviceDetails.Show();
+        }
 
         //==============    END     ==================
 
@@ -74,15 +67,15 @@ namespace PSI_WinForms
         //    dataGridView1.DataSource = services;
         //}
 
-        //============= LoadDataOfClients =================
+        //============= LoadDataOfServices =================
 
-        private async void LoadDataOfClientsAsync()
+        private async void LoadDataOfServicesAsync()
         {
             try
             {
-                var data = await GetGridDataOfClientsAsync();
+                var data = await GetGridDataOfServicesAsync();
 
-                ClientsDataGrid.DataSource = data; // Set the data source after data is retrieved.
+                ServicesDataGrid.DataSource = data; // Set the data source after data is retrieved.
             }
             catch (Exception ex)
             {
@@ -90,17 +83,17 @@ namespace PSI_WinForms
             }
         }
 
-        private async Task<List<ClientsDTO>> GetGridDataOfClientsAsync()
+        private async Task<List<ServicesDTO>> GetGridDataOfServicesAsync()
         {
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:7168/");
 
-                HttpResponseMessage response = await client.GetAsync("api/Clients"); // Adjust the URL to match your API's endpoint.
+                HttpResponseMessage response = await client.GetAsync("api/Services"); // Adjust the URL to match your API's endpoint.
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<List<ClientsDTO>>(content);
+                    var data = JsonConvert.DeserializeObject<List<ServicesDTO>>(content);
 
                     return data;
                 }

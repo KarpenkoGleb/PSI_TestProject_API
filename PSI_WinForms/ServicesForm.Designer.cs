@@ -1,6 +1,6 @@
 ﻿namespace PSI_WinForms
 {
-    partial class ClientsForm : Form
+    partial class ServicesForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -30,32 +30,29 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            ClientsDataGrid = new DataGridView();
+            ServicesDataGrid = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
-            Login = new DataGridViewTextBoxColumn();
-            ClientName = new DataGridViewTextBoxColumn();
-            Surname = new DataGridViewTextBoxColumn();
-            Patronymic = new DataGridViewTextBoxColumn();
-            PhoneNumber = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            ShowClientsButton = new Button();
+            Service = new DataGridViewTextBoxColumn();
             ShowServicesButton = new Button();
             GetInvoicesButton = new Button();
+            CreateService = new Button();
+            ShowClientsButton = new Button();
             panel2 = new Panel();
             closeButton = new Label();
             label1 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ClientsDataGrid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ServicesDataGrid).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 46, 54);
-            panel1.Controls.Add(ClientsDataGrid);
-            panel1.Controls.Add(ShowClientsButton);
+            panel1.Controls.Add(ServicesDataGrid);
             panel1.Controls.Add(ShowServicesButton);
             panel1.Controls.Add(GetInvoicesButton);
+            panel1.Controls.Add(CreateService);
+            panel1.Controls.Add(ShowClientsButton);
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
@@ -64,11 +61,12 @@
             panel1.Size = new Size(800, 500);
             panel1.TabIndex = 1;
             // 
-            // ClientsDataGrid
+            // ServicesDataGrid
             // 
-            ClientsDataGrid.BackgroundColor = SystemColors.MenuBar;
-            ClientsDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ClientsDataGrid.Columns.AddRange(new DataGridViewColumn[] { Id, Login, ClientName, Surname, Patronymic, PhoneNumber, Email });
+            ServicesDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ServicesDataGrid.BackgroundColor = SystemColors.MenuBar;
+            ServicesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ServicesDataGrid.Columns.AddRange(new DataGridViewColumn[] { Id, Service });
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.MenuBar;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -76,12 +74,12 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            ClientsDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
-            ClientsDataGrid.Location = new Point(12, 183);
-            ClientsDataGrid.Name = "ClientsDataGrid";
-            ClientsDataGrid.RowTemplate.Height = 25;
-            ClientsDataGrid.Size = new Size(776, 240);
-            ClientsDataGrid.TabIndex = 3;
+            ServicesDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            ServicesDataGrid.Location = new Point(12, 183);
+            ServicesDataGrid.Name = "ServicesDataGrid";
+            ServicesDataGrid.RowTemplate.Height = 25;
+            ServicesDataGrid.Size = new Size(776, 240);
+            ServicesDataGrid.TabIndex = 3;
             // 
             // Id
             // 
@@ -90,63 +88,20 @@
             Id.Name = "Id";
             Id.Visible = false;
             // 
-            // Login
+            // Service
             // 
-            Login.DataPropertyName = "Login";
-            Login.HeaderText = "Логин";
-            Login.Name = "Login";
-            Login.Resizable = DataGridViewTriState.True;
-            Login.SortMode = DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ClientName
-            // 
-            ClientName.DataPropertyName = "Name";
-            ClientName.HeaderText = "Имя";
-            ClientName.Name = "ClientName";
-            ClientName.Resizable = DataGridViewTriState.True;
-            ClientName.ToolTipText = "Click to go to Clients";
-            // 
-            // Surname
-            // 
-            Surname.DataPropertyName = "Surname";
-            Surname.HeaderText = "Фамилия";
-            Surname.Name = "Surname";
-            // 
-            // Patronymic
-            // 
-            Patronymic.DataPropertyName = "Patronymic";
-            Patronymic.HeaderText = "Отчество";
-            Patronymic.Name = "Patronymic";
-            // 
-            // PhoneNumber
-            // 
-            PhoneNumber.DataPropertyName = "PhoneNumber";
-            PhoneNumber.HeaderText = "Номер телефона";
-            PhoneNumber.Name = "PhoneNumber";
-            // 
-            // Email
-            // 
-            Email.DataPropertyName = "Email";
-            Email.HeaderText = "Email";
-            Email.Name = "Email";
-            // 
-            // ShowClientsButton
-            // 
-            ShowClientsButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ShowClientsButton.Location = new Point(135, 89);
-            ShowClientsButton.Name = "ShowClientsButton";
-            ShowClientsButton.Size = new Size(129, 50);
-            ShowClientsButton.TabIndex = 2;
-            ShowClientsButton.Text = "Клиенты";
-            ShowClientsButton.UseVisualStyleBackColor = true;
-            ShowClientsButton.Click += ShowClientsButton_Click;
+            Service.DataPropertyName = "Service";
+            Service.HeaderText = "Сервис";
+            Service.Name = "Service";
+            Service.Resizable = DataGridViewTriState.True;
+            Service.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // ShowServicesButton
             // 
             ShowServicesButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             ShowServicesButton.Location = new Point(270, 89);
             ShowServicesButton.Name = "ShowServicesButton";
-            ShowServicesButton.Size = new Size(129, 34);
+            ShowServicesButton.Size = new Size(129, 50);
             ShowServicesButton.TabIndex = 2;
             ShowServicesButton.Text = "Сервисы";
             ShowServicesButton.UseVisualStyleBackColor = true;
@@ -162,6 +117,28 @@
             GetInvoicesButton.Text = "Счета";
             GetInvoicesButton.UseVisualStyleBackColor = true;
             GetInvoicesButton.Click += getInvoicesButton_Click;
+            // 
+            // CreateService
+            // 
+            CreateService.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            CreateService.Location = new Point(12, 444);
+            CreateService.Name = "CreateService";
+            CreateService.Size = new Size(161, 34);
+            CreateService.TabIndex = 2;
+            CreateService.Text = "Добавить сервис";
+            CreateService.UseVisualStyleBackColor = true;
+            CreateService.Click += CreationServiceFormButton_Click;
+            // 
+            // ShowClientsButton
+            // 
+            ShowClientsButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ShowClientsButton.Location = new Point(135, 89);
+            ShowClientsButton.Name = "ShowClientsButton";
+            ShowClientsButton.Size = new Size(129, 34);
+            ShowClientsButton.TabIndex = 2;
+            ShowClientsButton.Text = "Клиенты";
+            ShowClientsButton.UseVisualStyleBackColor = true;
+            ShowClientsButton.Click += ShowClientsButton_Click;
             // 
             // panel2
             // 
@@ -205,7 +182,7 @@
             label1.Text = "Главный экран";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // ClientsForm
+            // ServicesForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -213,11 +190,11 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2);
-            Name = "ClientsForm";
+            Name = "ServicesForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Главный экран";
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ClientsDataGrid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ServicesDataGrid).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -229,17 +206,12 @@
         private Panel panel2;
         private Label closeButton;
         private Label label1;
-        private Button ShowClientsButton;
-        private Button ShowServicesButton;
         private Button GetInvoicesButton;
-        private DataGridView ClientsDataGrid;
-        private Button button1;
+        private DataGridView ServicesDataGrid;
+        private Button CreateService;
+        private Button ShowServicesButton;
+        private Button ShowClientsButton;
         private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn Login;
-        private DataGridViewTextBoxColumn ClientName;
-        private DataGridViewTextBoxColumn Surname;
-        private DataGridViewTextBoxColumn Patronymic;
-        private DataGridViewTextBoxColumn PhoneNumber;
-        private DataGridViewTextBoxColumn Email;
+        private DataGridViewTextBoxColumn Service;
     }
 }

@@ -14,11 +14,6 @@ namespace PSI_WinForms
             LoadDataOfInvoicesAsync();
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();    //  this.Close();
-        }
-
         private void InvoicesDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //this.Hide();
@@ -32,10 +27,36 @@ namespace PSI_WinForms
 
 
         }
+
+        //============= Buttons actions =================
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();    //  this.Close();
+        }
+
         private void getInvoicesButton_Click(object sender, EventArgs e)
         {
             LoadDataOfInvoicesAsync();
         }
+
+        private void ShowClientsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            ClientsForm clientsForm = new ClientsForm();
+            clientsForm.Show();
+        }
+        private void ShowServicesButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            ServicesForm servicesForm = new ServicesForm();
+            servicesForm.Show();
+        }
+
+        //==============    END     ==================
+
 
         //private void button1_Click(object sender, EventArgs e)
         //{
@@ -50,9 +71,7 @@ namespace PSI_WinForms
         //    dataGridView1.DataSource = services;
         //}
 
-        //==================================================
         //============= LoadDataOfInvoices =================
-        //==================================================
 
         private async void LoadDataOfInvoicesAsync()
         {
@@ -104,7 +123,7 @@ namespace PSI_WinForms
             }
         }
 
-        //============== END ==================
+        //==============    END     ==================
 
     }
 }

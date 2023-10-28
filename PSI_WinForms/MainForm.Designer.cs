@@ -31,8 +31,6 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panel1 = new Panel();
-            ViewWithTabs = new TabControl();
-            InvoicesTab = new TabPage();
             InvoicesDataGrid = new DataGridView();
             LinkToInvoiceDetails = new DataGridViewImageColumn();
             Id = new DataGridViewTextBoxColumn();
@@ -46,15 +44,13 @@
             PaymentDate = new DataGridViewTextBoxColumn();
             ReceiptId = new DataGridViewTextBoxColumn();
             IsPaymentCompleted = new DataGridViewCheckBoxColumn();
-            ClientsTab = new TabPage();
-            ServicesTab = new TabPage();
             GetInvoicesButton = new Button();
+            ShowClientsButton = new Button();
+            ShowServicesButton = new Button();
             panel2 = new Panel();
             closeButton = new Label();
             label1 = new Label();
             panel1.SuspendLayout();
-            ViewWithTabs.SuspendLayout();
-            InvoicesTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)InvoicesDataGrid).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -62,8 +58,10 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 46, 54);
-            panel1.Controls.Add(ViewWithTabs);
+            panel1.Controls.Add(InvoicesDataGrid);
             panel1.Controls.Add(GetInvoicesButton);
+            panel1.Controls.Add(ShowClientsButton);
+            panel1.Controls.Add(ShowServicesButton);
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
@@ -71,28 +69,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 500);
             panel1.TabIndex = 1;
-            // 
-            // ViewWithTabs
-            // 
-            ViewWithTabs.Controls.Add(InvoicesTab);
-            ViewWithTabs.Controls.Add(ClientsTab);
-            ViewWithTabs.Controls.Add(ServicesTab);
-            ViewWithTabs.Location = new Point(29, 111);
-            ViewWithTabs.Name = "ViewWithTabs";
-            ViewWithTabs.SelectedIndex = 0;
-            ViewWithTabs.Size = new Size(735, 287);
-            ViewWithTabs.TabIndex = 2;
-            // 
-            // InvoicesTab
-            // 
-            InvoicesTab.Controls.Add(InvoicesDataGrid);
-            InvoicesTab.Location = new Point(4, 24);
-            InvoicesTab.Name = "InvoicesTab";
-            InvoicesTab.Padding = new Padding(3);
-            InvoicesTab.Size = new Size(727, 259);
-            InvoicesTab.TabIndex = 0;
-            InvoicesTab.Text = "Счета";
-            InvoicesTab.UseVisualStyleBackColor = true;
             // 
             // InvoicesDataGrid
             // 
@@ -107,11 +83,10 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             InvoicesDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
-            InvoicesDataGrid.Dock = DockStyle.Fill;
-            InvoicesDataGrid.Location = new Point(3, 3);
+            InvoicesDataGrid.Location = new Point(12, 183);
             InvoicesDataGrid.Name = "InvoicesDataGrid";
             InvoicesDataGrid.RowTemplate.Height = 25;
-            InvoicesDataGrid.Size = new Size(721, 253);
+            InvoicesDataGrid.Size = new Size(776, 240);
             InvoicesDataGrid.TabIndex = 3;
             InvoicesDataGrid.CellContentClick += InvoicesDataGrid_CellContentClick;
             InvoicesDataGrid.CellContentDoubleClick += InvoicesDataGrid_CellContentClick;
@@ -201,35 +176,38 @@
             IsPaymentCompleted.Resizable = DataGridViewTriState.True;
             IsPaymentCompleted.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
-            // ClientsTab
-            // 
-            ClientsTab.Location = new Point(4, 24);
-            ClientsTab.Name = "ClientsTab";
-            ClientsTab.Padding = new Padding(3);
-            ClientsTab.Size = new Size(727, 259);
-            ClientsTab.TabIndex = 1;
-            ClientsTab.Text = "Клиенты";
-            ClientsTab.UseVisualStyleBackColor = true;
-            // 
-            // ServicesTab
-            // 
-            ServicesTab.Location = new Point(4, 24);
-            ServicesTab.Name = "ServicesTab";
-            ServicesTab.Size = new Size(727, 259);
-            ServicesTab.TabIndex = 2;
-            ServicesTab.Text = "Сервисы";
-            ServicesTab.UseVisualStyleBackColor = true;
-            // 
             // GetInvoicesButton
             // 
             GetInvoicesButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            GetInvoicesButton.Location = new Point(635, 441);
+            GetInvoicesButton.Location = new Point(0, 89);
             GetInvoicesButton.Name = "GetInvoicesButton";
-            GetInvoicesButton.Size = new Size(129, 34);
+            GetInvoicesButton.Size = new Size(129, 50);
             GetInvoicesButton.TabIndex = 2;
-            GetInvoicesButton.Text = "Get invoices";
+            GetInvoicesButton.Text = "Счета";
             GetInvoicesButton.UseVisualStyleBackColor = true;
             GetInvoicesButton.Click += getInvoicesButton_Click;
+            // 
+            // ShowClientsButton
+            // 
+            ShowClientsButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ShowClientsButton.Location = new Point(135, 89);
+            ShowClientsButton.Name = "ShowClientsButton";
+            ShowClientsButton.Size = new Size(129, 34);
+            ShowClientsButton.TabIndex = 2;
+            ShowClientsButton.Text = "Клиенты";
+            ShowClientsButton.UseVisualStyleBackColor = true;
+            ShowClientsButton.Click += ShowClientsButton_Click;
+            // 
+            // ShowServicesButton
+            // 
+            ShowServicesButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ShowServicesButton.Location = new Point(270, 89);
+            ShowServicesButton.Name = "ShowServicesButton";
+            ShowServicesButton.Size = new Size(129, 34);
+            ShowServicesButton.TabIndex = 2;
+            ShowServicesButton.Text = "Сервисы";
+            ShowServicesButton.UseVisualStyleBackColor = true;
+            ShowServicesButton.Click += ShowServicesButton_Click;
             // 
             // panel2
             // 
@@ -285,8 +263,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Главный экран";
             panel1.ResumeLayout(false);
-            ViewWithTabs.ResumeLayout(false);
-            InvoicesTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)InvoicesDataGrid).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -299,8 +275,8 @@
         private Panel panel2;
         private Label closeButton;
         private Label label1;
-        private DataGridView InvoicesDataGrid;
         private Button GetInvoicesButton;
+        private DataGridView InvoicesDataGrid;
         private DataGridViewImageColumn LinkToInvoiceDetails;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn ServiceId;
@@ -313,9 +289,8 @@
         private DataGridViewTextBoxColumn PaymentDate;
         private DataGridViewTextBoxColumn ReceiptId;
         private DataGridViewCheckBoxColumn IsPaymentCompleted;
-        private TabControl ViewWithTabs;
-        private TabPage InvoicesTab;
-        private TabPage ClientsTab;
-        private TabPage ServicesTab;
+        private Button button1;
+        private Button ShowServicesButton;
+        private Button ShowClientsButton;
     }
 }

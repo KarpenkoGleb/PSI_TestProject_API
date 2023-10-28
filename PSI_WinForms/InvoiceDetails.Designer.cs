@@ -107,6 +107,8 @@
             ServiceList.Size = new Size(245, 23);
             ServiceList.TabIndex = 5;
             ServiceList.ValueMember = "Id";
+            ServiceList.SelectedIndexChanged += ServiceList_SelectedIndexChanged;
+            ServiceList.DropDownClosed += ServiceList_DropDownClosed;
             // 
             // ClientTextBox
             // 
@@ -142,6 +144,7 @@
             ClientsList.Size = new Size(138, 23);
             ClientsList.TabIndex = 5;
             ClientsList.ValueMember = "Id";
+            ClientsList.DropDownClosed += ClientsList_DropDownClosed;
             // 
             // label2
             // 
