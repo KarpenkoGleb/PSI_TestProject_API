@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientsForm));
             panel1 = new Panel();
+            CreateClientButton = new Button();
             ClientsDataGrid = new DataGridView();
+            Settings = new DataGridViewImageColumn();
             Id = new DataGridViewTextBoxColumn();
             Login = new DataGridViewTextBoxColumn();
             ClientName = new DataGridViewTextBoxColumn();
@@ -52,6 +55,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 46, 54);
+            panel1.Controls.Add(CreateClientButton);
             panel1.Controls.Add(ClientsDataGrid);
             panel1.Controls.Add(ShowClientsButton);
             panel1.Controls.Add(ShowServicesButton);
@@ -64,11 +68,22 @@
             panel1.Size = new Size(800, 500);
             panel1.TabIndex = 1;
             // 
+            // CreateClientButton
+            // 
+            CreateClientButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            CreateClientButton.Location = new Point(12, 454);
+            CreateClientButton.Name = "CreateClientButton";
+            CreateClientButton.Size = new Size(161, 34);
+            CreateClientButton.TabIndex = 4;
+            CreateClientButton.Text = "Добавить клиента";
+            CreateClientButton.UseVisualStyleBackColor = true;
+            CreateClientButton.Click += CreateClientButton_Click;
+            // 
             // ClientsDataGrid
             // 
             ClientsDataGrid.BackgroundColor = SystemColors.MenuBar;
             ClientsDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ClientsDataGrid.Columns.AddRange(new DataGridViewColumn[] { Id, Login, ClientName, Surname, Patronymic, PhoneNumber, Email });
+            ClientsDataGrid.Columns.AddRange(new DataGridViewColumn[] { Settings, Id, Login, ClientName, Surname, Patronymic, PhoneNumber, Email });
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.MenuBar;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -82,6 +97,16 @@
             ClientsDataGrid.RowTemplate.Height = 25;
             ClientsDataGrid.Size = new Size(776, 240);
             ClientsDataGrid.TabIndex = 3;
+            ClientsDataGrid.CellClick += ClientsDataGrid_CellClick;
+            // 
+            // Settings
+            // 
+            Settings.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            Settings.HeaderText = "Детали";
+            Settings.Image = (Image)resources.GetObject("Settings.Image");
+            Settings.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            Settings.Name = "Settings";
+            Settings.Width = 52;
             // 
             // Id
             // 
@@ -234,6 +259,8 @@
         private Button GetInvoicesButton;
         private DataGridView ClientsDataGrid;
         private Button button1;
+        private Button CreateClientButton;
+        private DataGridViewImageColumn Settings;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Login;
         private DataGridViewTextBoxColumn ClientName;

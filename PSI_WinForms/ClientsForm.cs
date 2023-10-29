@@ -58,6 +58,14 @@ namespace PSI_WinForms
             servicesForm.Show();
         }
 
+        private void CreateClientButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            CreationClientForm clientDetails = new CreationClientForm();
+            clientDetails.Show();
+        }
+
         //==============    END     ==================
 
 
@@ -109,6 +117,17 @@ namespace PSI_WinForms
                     throw new Exception("Failed to retrieve data from the API.");
                 }
             }
+        }
+
+        private void ClientsDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Hide();
+
+            var serviceId = (int)ClientsDataGrid.Rows[e.RowIndex].Cells[1].Value;
+
+            UpdateClientForm updateClientForm = new UpdateClientForm(serviceId);
+            updateClientForm.Show();
+
         }
 
         //==============    END     ==================

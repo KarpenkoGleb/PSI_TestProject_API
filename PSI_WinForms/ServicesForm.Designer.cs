@@ -89,13 +89,13 @@
             // 
             Settings.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             Settings.FillWeight = 38.0710678F;
-            Settings.HeaderText = "Settings";
+            Settings.HeaderText = "Детали";
             Settings.Image = (Image)resources.GetObject("Settings.Image");
             Settings.ImageLayout = DataGridViewImageCellLayout.Zoom;
             Settings.Name = "Settings";
             Settings.Resizable = DataGridViewTriState.True;
             Settings.SortMode = DataGridViewColumnSortMode.Automatic;
-            Settings.Width = 74;
+            Settings.Width = 71;
             // 
             // Id
             // 
