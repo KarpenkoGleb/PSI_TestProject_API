@@ -14,6 +14,18 @@ namespace PSI_WinForms
             LoadDataOfServicesAsync();
         }
 
+
+        private void ServicesDataGrid_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            this.Hide();
+
+            var serviceId = (int)ServicesDataGrid.Rows[e.RowIndex].Cells[2].Value;
+
+            UpdateServiceForm updateServiceForm = new UpdateServiceForm(serviceId);
+            updateServiceForm.Show();
+
+        }
+
         //============= Buttons actions =================
 
         private void closeButton_Click(object sender, EventArgs e)

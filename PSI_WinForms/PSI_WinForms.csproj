@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="UpdateServiceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="CreationServiceForm.cs">
       <SubType>Form</SubType>
     </Compile>

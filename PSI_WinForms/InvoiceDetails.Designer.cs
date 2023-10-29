@@ -31,6 +31,7 @@
             InvoicesDetails = new Panel();
             ClientOfInvoice = new Label();
             ServiceList = new ComboBox();
+            ServiceDescrTextBox = new TextBox();
             ClientTextBox = new TextBox();
             PhoneNumTextBox = new TextBox();
             ServiceName = new Label();
@@ -44,6 +45,7 @@
             InvoicesClient = new Label();
             PatronymicTextBox = new TextBox();
             Patronymic = new Label();
+            ServiceDescrLabel = new Label();
             panel2 = new Panel();
             closeButton = new Label();
             label1 = new Label();
@@ -61,6 +63,7 @@
             InvoicesDetails.BackColor = Color.FromArgb(38, 46, 54);
             InvoicesDetails.Controls.Add(ClientOfInvoice);
             InvoicesDetails.Controls.Add(ServiceList);
+            InvoicesDetails.Controls.Add(ServiceDescrTextBox);
             InvoicesDetails.Controls.Add(ClientTextBox);
             InvoicesDetails.Controls.Add(PhoneNumTextBox);
             InvoicesDetails.Controls.Add(ServiceName);
@@ -73,6 +76,7 @@
             InvoicesDetails.Controls.Add(InvoicesClient);
             InvoicesDetails.Controls.Add(PatronymicTextBox);
             InvoicesDetails.Controls.Add(Patronymic);
+            InvoicesDetails.Controls.Add(ServiceDescrLabel);
             InvoicesDetails.Controls.Add(panel2);
             InvoicesDetails.Controls.Add(ClientName);
             InvoicesDetails.Controls.Add(Email);
@@ -109,6 +113,13 @@
             ServiceList.ValueMember = "Id";
             ServiceList.SelectedIndexChanged += ServiceList_SelectedIndexChanged;
             ServiceList.DropDownClosed += ServiceList_DropDownClosed;
+            // 
+            // ServiceDescrTextBox
+            // 
+            ServiceDescrTextBox.Location = new Point(399, 457);
+            ServiceDescrTextBox.Name = "ServiceDescrTextBox";
+            ServiceDescrTextBox.Size = new Size(309, 23);
+            ServiceDescrTextBox.TabIndex = 3;
             // 
             // ClientTextBox
             // 
@@ -226,6 +237,18 @@
             Patronymic.Size = new Size(81, 21);
             Patronymic.TabIndex = 4;
             Patronymic.Text = "Отчество";
+            // 
+            // ServiceDescrLabel
+            // 
+            ServiceDescrLabel.AutoSize = true;
+            ServiceDescrLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            ServiceDescrLabel.ForeColor = SystemColors.ButtonFace;
+            ServiceDescrLabel.Location = new Point(399, 430);
+            ServiceDescrLabel.Name = "ServiceDescrLabel";
+            ServiceDescrLabel.Size = new Size(151, 21);
+            ServiceDescrLabel.TabIndex = 4;
+            ServiceDescrLabel.Text = "Описание сервиса";
+            ServiceDescrLabel.UseMnemonic = false;
             // 
             // panel2
             // 
@@ -357,5 +380,7 @@
         private ComboBox ServiceList;
         private Panel panel4;
         private Panel panel1;
+        private TextBox ServiceDescrTextBox;
+        private Label ServiceDescrLabel;
     }
 }

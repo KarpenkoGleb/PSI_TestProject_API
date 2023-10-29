@@ -1,6 +1,6 @@
 ﻿namespace PSI_WinForms
 {
-    partial class CreationServiceForm : Form
+    partial class UpdateServiceForm : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -34,10 +34,11 @@
             ServiceTextBox = new TextBox();
             ServiceName = new Label();
             panel1 = new Panel();
-            UpdateInvoiceButton = new Button();
+            UpdateServiceButton = new Button();
             panel2 = new Panel();
             closeButton = new Label();
             label1 = new Label();
+            DeleteServiceButton = new Button();
             ServiceDetails.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -63,21 +64,21 @@
             // 
             // ServiceDescrTextBox
             // 
-            ServiceDescrTextBox.Location = new Point(408, 171);
+            ServiceDescrTextBox.Location = new Point(414, 171);
             ServiceDescrTextBox.Name = "ServiceDescrTextBox";
             ServiceDescrTextBox.PlaceholderText = "Укажите описание сервиса";
-            ServiceDescrTextBox.Size = new Size(309, 23);
-            ServiceDescrTextBox.TabIndex = 8;
+            ServiceDescrTextBox.Size = new Size(337, 23);
+            ServiceDescrTextBox.TabIndex = 10;
             // 
             // ServiceDescrLabel
             // 
             ServiceDescrLabel.AutoSize = true;
             ServiceDescrLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             ServiceDescrLabel.ForeColor = SystemColors.ButtonFace;
-            ServiceDescrLabel.Location = new Point(408, 137);
+            ServiceDescrLabel.Location = new Point(414, 137);
             ServiceDescrLabel.Name = "ServiceDescrLabel";
             ServiceDescrLabel.Size = new Size(151, 21);
-            ServiceDescrLabel.TabIndex = 9;
+            ServiceDescrLabel.TabIndex = 11;
             ServiceDescrLabel.Text = "Описание сервиса";
             ServiceDescrLabel.UseMnemonic = false;
             // 
@@ -86,7 +87,7 @@
             ServiceTextBox.Location = new Point(41, 171);
             ServiceTextBox.Name = "ServiceTextBox";
             ServiceTextBox.PlaceholderText = "Введите название сервиса";
-            ServiceTextBox.Size = new Size(285, 23);
+            ServiceTextBox.Size = new Size(281, 23);
             ServiceTextBox.TabIndex = 7;
             // 
             // ServiceName
@@ -103,22 +104,23 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(58, 69, 80);
-            panel1.Controls.Add(UpdateInvoiceButton);
+            panel1.Controls.Add(DeleteServiceButton);
+            panel1.Controls.Add(UpdateServiceButton);
             panel1.Location = new Point(0, 290);
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 60);
             panel1.TabIndex = 6;
             // 
-            // UpdateInvoiceButton
+            // UpdateServiceButton
             // 
-            UpdateInvoiceButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            UpdateInvoiceButton.Location = new Point(659, 13);
-            UpdateInvoiceButton.Name = "UpdateInvoiceButton";
-            UpdateInvoiceButton.Size = new Size(129, 34);
-            UpdateInvoiceButton.TabIndex = 2;
-            UpdateInvoiceButton.Text = "Сохранить";
-            UpdateInvoiceButton.UseVisualStyleBackColor = true;
-            UpdateInvoiceButton.Click += UpdateInvoiceButton_Click;
+            UpdateServiceButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            UpdateServiceButton.Location = new Point(659, 13);
+            UpdateServiceButton.Name = "UpdateServiceButton";
+            UpdateServiceButton.Size = new Size(129, 34);
+            UpdateServiceButton.TabIndex = 2;
+            UpdateServiceButton.Text = "Сохранить";
+            UpdateServiceButton.UseVisualStyleBackColor = true;
+            UpdateServiceButton.Click += UpdateServiceButton_Click;
             // 
             // panel2
             // 
@@ -159,17 +161,33 @@
             label1.Name = "label1";
             label1.Size = new Size(800, 90);
             label1.TabIndex = 0;
-            label1.Text = "Добавление сервиса";
+            label1.Text = "Редактирование данных сервиса";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Click += label1_Click;
             // 
-            // CreationServiceForm
+            // DeleteServiceButton
+            // 
+            DeleteServiceButton.BackColor = Color.FromArgb(33, 33, 34);
+            DeleteServiceButton.BackgroundImageLayout = ImageLayout.None;
+            DeleteServiceButton.FlatStyle = FlatStyle.Popup;
+            DeleteServiceButton.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteServiceButton.ForeColor = SystemColors.ControlLight;
+            DeleteServiceButton.Location = new Point(12, 14);
+            DeleteServiceButton.Name = "DeleteServiceButton";
+            DeleteServiceButton.Size = new Size(129, 34);
+            DeleteServiceButton.TabIndex = 2;
+            DeleteServiceButton.Text = "Удалить сервис";
+            DeleteServiceButton.UseVisualStyleBackColor = false;
+            DeleteServiceButton.Click += DeleteServiceButton_Click;
+            // 
+            // UpdateServiceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 350);
             Controls.Add(ServiceDetails);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CreationServiceForm";
+            Name = "UpdateServiceForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "InvoiceDetails";
             ServiceDetails.ResumeLayout(false);
@@ -183,7 +201,7 @@
         #endregion
 
         private Panel ServiceDetails;
-        private Button UpdateInvoiceButton;
+        private Button UpdateServiceButton;
         private Panel panel2;
         private Label closeButton;
         private Label label1;
@@ -192,5 +210,6 @@
         private TextBox ServiceTextBox;
         private TextBox ServiceDescrTextBox;
         private Label ServiceDescrLabel;
+        private Button DeleteServiceButton;
     }
 }

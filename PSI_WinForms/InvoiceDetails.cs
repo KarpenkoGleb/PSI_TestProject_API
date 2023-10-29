@@ -37,6 +37,8 @@ namespace PSI_WinForms
 
                 ServiceList.SelectedValue = data?.ServiceId;
 
+                ServiceDescrTextBox.Text = data?.Service.Service_Descr;
+
 
             }
             catch (Exception ex)
@@ -233,14 +235,56 @@ namespace PSI_WinForms
             LoadDataOfClientByAsync(clientId);
         }
 
+        //=============     END     =================
+
+        //============= Renew textboxes for service =================
+        private async void LoadDataOfServiceByAsync(int clientId)
+        {
+            try
+            {
+                var data = await GetDataOfServiceByIdAsync(clientId);
+
+                //ClientsList.SelectedValue = data?.Id;
+
+                ServiceDescrTextBox.Text = data?.Service_Descr; // Set the data source after data is retrieved.
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+
+        private async Task<ServicesDTO> GetDataOfServiceByIdAsync(int serviceId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7168/");
+
+                HttpResponseMessage response = await client.GetAsync(string.Format("api/Services/{0}", serviceId)); // Adjust the URL to match your API's endpoint.
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<ServicesDTO>(content);
+
+                    return data;
+                }
+                else
+                {
+                    throw new Exception("Failed to retrieve data from the API.");
+                }
+            }
+        }
+
         private void ServiceList_DropDownClosed(object sender, EventArgs e)
         {
             var serviceId = (int)ServiceList.SelectedValue;
 
-            LoadDataOfClientByAsync(serviceId);
+            LoadDataOfServiceByAsync(serviceId);
 
         }
-
 
 
 

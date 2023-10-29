@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServicesForm));
             panel1 = new Panel();
             ServicesDataGrid = new DataGridView();
+            Settings = new DataGridViewImageColumn();
             Id = new DataGridViewTextBoxColumn();
             Service = new DataGridViewTextBoxColumn();
+            Service_Descr = new DataGridViewTextBoxColumn();
             ShowServicesButton = new Button();
             GetInvoicesButton = new Button();
             CreateService = new Button();
@@ -66,7 +69,7 @@
             ServicesDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ServicesDataGrid.BackgroundColor = SystemColors.MenuBar;
             ServicesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ServicesDataGrid.Columns.AddRange(new DataGridViewColumn[] { Id, Service });
+            ServicesDataGrid.Columns.AddRange(new DataGridViewColumn[] { Settings, Id, Service, Service_Descr });
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.MenuBar;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -80,6 +83,19 @@
             ServicesDataGrid.RowTemplate.Height = 25;
             ServicesDataGrid.Size = new Size(776, 240);
             ServicesDataGrid.TabIndex = 3;
+            ServicesDataGrid.CellContentClick += ServicesDataGrid_CellContentClick_1;
+            // 
+            // Settings
+            // 
+            Settings.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            Settings.FillWeight = 38.0710678F;
+            Settings.HeaderText = "Settings";
+            Settings.Image = (Image)resources.GetObject("Settings.Image");
+            Settings.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            Settings.Name = "Settings";
+            Settings.Resizable = DataGridViewTriState.True;
+            Settings.SortMode = DataGridViewColumnSortMode.Automatic;
+            Settings.Width = 74;
             // 
             // Id
             // 
@@ -91,10 +107,18 @@
             // Service
             // 
             Service.DataPropertyName = "Service";
+            Service.FillWeight = 130.964462F;
             Service.HeaderText = "Сервис";
             Service.Name = "Service";
             Service.Resizable = DataGridViewTriState.True;
             Service.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Service_Descr
+            // 
+            Service_Descr.DataPropertyName = "ServiceDescr";
+            Service_Descr.FillWeight = 130.964462F;
+            Service_Descr.HeaderText = "Описание";
+            Service_Descr.Name = "Service_Descr";
             // 
             // ShowServicesButton
             // 
@@ -211,7 +235,9 @@
         private Button CreateService;
         private Button ShowServicesButton;
         private Button ShowClientsButton;
+        private DataGridViewImageColumn Settings;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Service;
+        private DataGridViewTextBoxColumn Service_Descr;
     }
 }

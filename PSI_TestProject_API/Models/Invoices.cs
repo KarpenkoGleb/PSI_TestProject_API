@@ -27,7 +27,7 @@ namespace PSI_TestProject_API.Models
         public DateTime? PaymentDate { get; set; }
 
         [Column("receiptId")]
-        public int receiptId { get; set; }
+        public int? receiptId { get; set; }
 
         [Column("IsPaymentCompleted")]
         public bool IsPaymentCompleted { get; set; }

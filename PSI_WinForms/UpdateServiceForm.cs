@@ -9,11 +9,16 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PSI_WinForms
 {
-    public partial class CreationServiceForm : Form
+    public partial class UpdateServiceForm : Form
     {
-        public CreationServiceForm()
+        private int _serviceId;
+        public UpdateServiceForm(int serviceId)
         {
             InitializeComponent();
+
+            LoadDataOfServiceByAsync(serviceId);
+
+            _serviceId = serviceId;
         }
 
         private async void LoadDataOfServiceByAsync(int serviceId)
@@ -23,6 +28,8 @@ namespace PSI_WinForms
                 var data = await GetDataOfServiceByIdAsync(serviceId);
 
                 ServiceTextBox.Text = data?.Service; // Set the data source after data is retrieved.
+
+                ServiceDescrTextBox.Text = data?.Service_Descr; // Set the data source after data is retrieved.
 
             }
             catch (Exception ex)
@@ -53,41 +60,39 @@ namespace PSI_WinForms
             }
         }
 
+
+        //============= Close button action =================
+
         private void closeButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
 
             ServicesForm servicesForm = new ServicesForm();
             servicesForm.Show();
         }
 
+        //==============    END     ==================
 
 
+        //============= Update button action =================
 
-        //============= Buttons actions =================
-
-        private void UpdateInvoiceButton_Click(object sender, EventArgs e)
+        private void UpdateServiceButton_Click(object sender, EventArgs e)       // !!!!!!!!!!!!!!!!!!!!!!!!
         {
             ServicesDTO newService = new ServicesDTO();
 
-            newService.Id = 0;
+            newService.Id = _serviceId;
             newService.Service = ServiceTextBox.Text;
             newService.Service_Descr = ServiceDescrTextBox.Text;
 
-            PostNewServiceAsync(newService);
-
-            ServiceTextBox.Text = null;
-            ServiceDescrTextBox.Text = null;
-
-
+            PutServiceAsync(newService, _serviceId);
 
         }
 
-        private async Task PostNewServiceAsync(ServicesDTO newService)
+        private async Task PutServiceAsync(ServicesDTO newService, int serviceId)
         {
             string json = JsonSerializer.Serialize(newService);
 
-            string apiUrl = "https://localhost:7168/api/Services/";
+            string apiUrl = "https://localhost:7168/api/Services/{0}";
 
 
             using (HttpClient client = new HttpClient())
@@ -96,27 +101,68 @@ namespace PSI_WinForms
 
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await client.PostAsync(apiUrl, content);
+                HttpResponseMessage response = await client.PutAsync(string.Format("api/Services/{0}", serviceId), content);
+                //HttpResponseMessage response = await client.PutAsync(apiUrl, content);
 
                 if (response.IsSuccessStatusCode)
                 {
                     string responseContent = await response.Content.ReadAsStringAsync();
                     Console.WriteLine("Response: " + responseContent);
 
-                    MessageBox.Show("Новый сервис успешно создан");
+                    MessageBox.Show("Данные сервиса успешно обновлены");
                 }
                 else
                 {
                     Console.WriteLine("Error: " + response.StatusCode);
 
-                    MessageBox.Show("При создании сервиса произошла ошибка. Попробуйте еще раз");
+                    MessageBox.Show("При изменении данных сервиса произошла ошибка. Попробуйте еще раз");
                 }
             }
         }
 
+        //==============    END     ==================
 
+
+        //============= Delete button action =================
+
+        private void DeleteServiceButton_Click(object sender, EventArgs e)       // !!!!!!!!!!!!!!!!!!!!!!!!
+        {
+            DeleteServiceAsync(_serviceId);
+
+            this.Close();
+            ServicesForm servicesForm = new ServicesForm();
+            servicesForm.Show();
+        }
+
+        private async Task DeleteServiceAsync(int serviceId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7168/");
+
+                HttpResponseMessage response = await client.DeleteAsync(string.Format("api/Services/{0}", serviceId));
+                //HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("Response: " + responseContent);
+
+                    MessageBox.Show("Сервис успешно удален");
+                }
+                else
+                {
+                    Console.WriteLine("Error: " + response.StatusCode);
+
+                    MessageBox.Show("При удалении сервиса произошла ошибка. Попробуйте еще раз");
+                }
+            }
+        }
 
         //==============    END     ==================
+
+
+
 
         //============= Moving Screen =================
 
@@ -133,6 +179,11 @@ namespace PSI_WinForms
         private void ServiceDetails_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         //=============     END     =================

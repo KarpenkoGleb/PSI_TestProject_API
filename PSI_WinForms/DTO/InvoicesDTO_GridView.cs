@@ -13,7 +13,7 @@ namespace PSI_WinForms.DTO
         public DateTime CreationDate { get; set; }
         public DateTime PayBefore { get; set; }
         public DateTime? PaymentDate { get; set; }
-        public int receiptId { get; set; }
+        public int? receiptId { get; set; }
         public bool IsPaymentCompleted { get; set; }
     }
 }

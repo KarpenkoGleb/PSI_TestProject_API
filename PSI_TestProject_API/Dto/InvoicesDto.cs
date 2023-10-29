@@ -11,7 +11,7 @@ namespace PSI_TestProject_API.Dto
         public DateTime CreationDate { get; set; }
         public DateTime PayBefore { get; set; }
         public DateTime? PaymentDate { get; set; }
-        public int receiptId { get; set; }
+        public int? receiptId { get; set; }
         public bool IsPaymentCompleted { get; set; }
         public ServicesDto? Service { get; set; }
         public ClientsDto? Client { get; set; }

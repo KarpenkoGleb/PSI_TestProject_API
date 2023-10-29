@@ -10,6 +10,9 @@ namespace PSI_TestProject_API.Models
 
         [Column("Service")]
         public string Service { get; set; }
+
+        [Column("Service_Descr")]
+        public string? Service_Descr { get; set; }
         //public ICollection<Invoices> Invoices { get; set; }
     }
 }
