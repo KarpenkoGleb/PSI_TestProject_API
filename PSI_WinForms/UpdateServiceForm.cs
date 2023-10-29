@@ -140,8 +140,24 @@ namespace PSI_WinForms
             {
                 client.BaseAddress = new Uri("https://localhost:7168/");
 
-                HttpResponseMessage response = await client.DeleteAsync(string.Format("api/Services/{0}", serviceId));
-                //HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+                HttpResponseMessage? response = null;
+
+                try
+                {
+                    response = await client.DeleteAsync(string.Format("api/Services/{0}", serviceId));
+                    //HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+                }
+
+                catch (HttpRequestException ex)
+                {
+                    // Handle HTTP request exceptions (e.g., network issues).
+                    MessageBox.Show($"HTTP Request Error: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions, including the one with the exception message from your API.
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -154,7 +170,9 @@ namespace PSI_WinForms
                 {
                     Console.WriteLine("Error: " + response.StatusCode);
 
-                    MessageBox.Show("При удалении сервиса произошла ошибка. Попробуйте еще раз");
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+
+                    MessageBox.Show(errorMessage);        //"При удалении сервиса произошла ошибка. Попробуйте еще раз");
                 }
             }
         }

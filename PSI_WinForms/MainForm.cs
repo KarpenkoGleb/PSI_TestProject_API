@@ -22,7 +22,7 @@ namespace PSI_WinForms
 
             //int.tryparse
 
-            InvoiceDetails invoiceDetails = new InvoiceDetails(invoiceId);
+            UpdateInvoiceForm invoiceDetails = new UpdateInvoiceForm(invoiceId);
             invoiceDetails.Show();
 
 

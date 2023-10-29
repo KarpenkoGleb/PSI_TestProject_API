@@ -58,7 +58,17 @@ namespace PSI_TestProject_API.Repository
 
         public bool Save()
         {
-            var saved = _context.SaveChanges();
+            var saved = 0;
+
+            try
+            {
+                saved = _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException?.Message);
+            }
+            
             return saved > 0 ? true : false;
         }
 

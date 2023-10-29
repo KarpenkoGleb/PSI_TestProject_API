@@ -138,10 +138,21 @@ namespace PSI_TestProject_API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (!_servicesRepository.DeleteService(ServiceToDelete))
+            try
             {
-                ModelState.AddModelError("", "Something went wrong while deleting Service");
+                if (!_servicesRepository.DeleteService(ServiceToDelete))
+                {
+                    ModelState.AddModelError("", "Something went wrong while deleting Service");
+
+                    return StatusCode(500, ModelState); 
+                }
             }
+            
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
 
             return NoContent();
         }

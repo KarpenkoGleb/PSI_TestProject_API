@@ -34,11 +34,11 @@
             ServiceTextBox = new TextBox();
             ServiceName = new Label();
             panel1 = new Panel();
+            DeleteServiceButton = new Button();
             UpdateServiceButton = new Button();
             panel2 = new Panel();
             closeButton = new Label();
             label1 = new Label();
-            DeleteServiceButton = new Button();
             ServiceDetails.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -111,6 +111,21 @@
             panel1.Size = new Size(800, 60);
             panel1.TabIndex = 6;
             // 
+            // DeleteServiceButton
+            // 
+            DeleteServiceButton.BackColor = Color.FromArgb(33, 33, 34);
+            DeleteServiceButton.BackgroundImageLayout = ImageLayout.None;
+            DeleteServiceButton.FlatStyle = FlatStyle.Popup;
+            DeleteServiceButton.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteServiceButton.ForeColor = SystemColors.ControlLight;
+            DeleteServiceButton.Location = new Point(12, 14);
+            DeleteServiceButton.Name = "DeleteServiceButton";
+            DeleteServiceButton.Size = new Size(129, 34);
+            DeleteServiceButton.TabIndex = 2;
+            DeleteServiceButton.Text = "Удалить сервис";
+            DeleteServiceButton.UseVisualStyleBackColor = false;
+            DeleteServiceButton.Click += DeleteServiceButton_Click;
+            // 
             // UpdateServiceButton
             // 
             UpdateServiceButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
@@ -164,21 +179,6 @@
             label1.Text = "Редактирование данных сервиса";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             label1.Click += label1_Click;
-            // 
-            // DeleteServiceButton
-            // 
-            DeleteServiceButton.BackColor = Color.FromArgb(33, 33, 34);
-            DeleteServiceButton.BackgroundImageLayout = ImageLayout.None;
-            DeleteServiceButton.FlatStyle = FlatStyle.Popup;
-            DeleteServiceButton.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            DeleteServiceButton.ForeColor = SystemColors.ControlLight;
-            DeleteServiceButton.Location = new Point(12, 14);
-            DeleteServiceButton.Name = "DeleteServiceButton";
-            DeleteServiceButton.Size = new Size(129, 34);
-            DeleteServiceButton.TabIndex = 2;
-            DeleteServiceButton.Text = "Удалить сервис";
-            DeleteServiceButton.UseVisualStyleBackColor = false;
-            DeleteServiceButton.Click += DeleteServiceButton_Click;
             // 
             // UpdateServiceForm
             // 

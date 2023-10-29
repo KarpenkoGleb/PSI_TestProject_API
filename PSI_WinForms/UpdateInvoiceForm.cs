@@ -1,17 +1,21 @@
 ﻿using Newtonsoft.Json;
 using PSI_WinForms.DTO;
+using System.Text;
 
 namespace PSI_WinForms
 {
-    public partial class InvoiceDetails : Form
+    public partial class UpdateInvoiceForm : Form
     {
-        public InvoiceDetails(int invoiceId)
+        private int _InvoiceId;
+        public UpdateInvoiceForm(int invoiceId)
         {
             InitializeComponent();
             LoadDataOfInvoiceByAsync(invoiceId);
 
             LoadListDataOfClientsAsync();
             LoadListDataOfServicesAsync();
+
+            _InvoiceId = invoiceId;
 
         }
 
@@ -22,6 +26,18 @@ namespace PSI_WinForms
             try
             {
                 var data = await GetDataOfInvoiceByIdAsync(invoiceId);
+
+                AmountTextBox.Text = data?.Amount.ToString();
+
+                CreationDateTextBox.Text = data?.CreationDate.ToString();
+
+                PayBeforeTextBox.Text = data?.PayBefore.ToString();
+
+                PaymentDateTextBox.Text = data?.PaymentDate.ToString();
+
+                ReceiptTextBox.Text = data?.receiptId.ToString();
+
+                IsPaymentCompletedTextBox.Text = data?.IsPaymentCompleted.ToString();
 
                 ClientsList.SelectedValue = data?.ClientId;
 
@@ -286,8 +302,58 @@ namespace PSI_WinForms
 
         }
 
-
-
         //=============     END     =================
+
+
+        //============= BUTTON action =================
+
+        //private void UpdateInvoiceButton_Click(object sender, EventArgs e)
+        //{
+        //    InvoicesDTO newInvoice = new InvoicesDTO();
+
+        //    newInvoice.Id = _InvoiceId;
+        //    newInvoice.ServiceId = (int)ServiceList.SelectedValue;
+        //    newInvoice.ServiceId = (int)ClientsList.SelectedValue;
+        //    newInvoice.Amount = AmountTextBox.Text;
+        //    newInvoice.CreationDate = CreationDateTextBox.Text;
+        //    newInvoice.Surname = SurnameTextBox.Text;
+        //    newInvoice.Email = EmailTextBox.Text;
+        //    newInvoice.Patronymic = PatronymicTextBox.Text;
+
+        //    PutClientAsync(newInvoice, _InvoiceId);
+        //}
+
+        //private async Task PutClientAsync(ClientsDTO newInvoice, int ClientId)
+        //{
+        //    string json = JsonSerializer.Serialize(newInvoice);
+
+
+        //    using (HttpClient client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri("https://localhost:7168/");
+
+        //        StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //        HttpResponseMessage response = await client.PutAsync(string.Format("api/Clients/{0}", ClientId), content);
+        //        //HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string responseContent = await response.Content.ReadAsStringAsync();
+        //            Console.WriteLine("Response: " + responseContent);
+
+        //            MessageBox.Show("Данные клиента успешно обновлены");
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Error: " + response.StatusCode);
+
+        //            MessageBox.Show("При изменении данных клиента произошла ошибка. Попробуйте еще раз");
+        //        }
+        //    }
+        //}
+        //=============     END     =================
+
+
     }
 }

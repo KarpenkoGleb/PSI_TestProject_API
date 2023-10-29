@@ -27,7 +27,7 @@
     <Compile Update="CreationServiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="InvoiceDetails.cs" />
+    <Compile Update="UpdateInvoiceForm.cs" />
     <Compile Update="ClientsForm.cs" />
     <Compile Update="ServicesForm.cs" />
     <Compile Update="MainForm.cs" />
