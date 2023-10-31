@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             InvoicesDetails = new Panel();
+            IsPaymentCompletedCheckBox = new CheckBox();
+            PayBeforePicker = new DateTimePicker();
+            CreationDatePicker = new DateTimePicker();
+            PaymentDatePicker = new DateTimePicker();
             ClientOfInvoice = new Label();
             ServiceList = new ComboBox();
             ServiceDescrTextBox = new TextBox();
-            CreationDateTextBox = new TextBox();
-            IsPaymentCompletedTextBox = new TextBox();
             ReceiptTextBox = new TextBox();
-            PaymentDateTextBox = new TextBox();
-            PayBeforeTextBox = new TextBox();
+            InvoiceIdTextBox = new TextBox();
             AmountTextBox = new TextBox();
             ClientTextBox = new TextBox();
             PhoneNumTextBox = new TextBox();
@@ -52,8 +53,8 @@
             label3 = new Label();
             InvoicesClient = new Label();
             PatronymicTextBox = new TextBox();
-            IsPaymentCompletedLabel = new Label();
             Patronymic = new Label();
+            label4 = new Label();
             ReceiptLabel = new Label();
             CreationDateLabel = new Label();
             PaymentDateLabel = new Label();
@@ -75,14 +76,15 @@
             // InvoicesDetails
             // 
             InvoicesDetails.BackColor = Color.FromArgb(38, 46, 54);
+            InvoicesDetails.Controls.Add(IsPaymentCompletedCheckBox);
+            InvoicesDetails.Controls.Add(PayBeforePicker);
+            InvoicesDetails.Controls.Add(CreationDatePicker);
+            InvoicesDetails.Controls.Add(PaymentDatePicker);
             InvoicesDetails.Controls.Add(ClientOfInvoice);
             InvoicesDetails.Controls.Add(ServiceList);
             InvoicesDetails.Controls.Add(ServiceDescrTextBox);
-            InvoicesDetails.Controls.Add(CreationDateTextBox);
-            InvoicesDetails.Controls.Add(IsPaymentCompletedTextBox);
             InvoicesDetails.Controls.Add(ReceiptTextBox);
-            InvoicesDetails.Controls.Add(PaymentDateTextBox);
-            InvoicesDetails.Controls.Add(PayBeforeTextBox);
+            InvoicesDetails.Controls.Add(InvoiceIdTextBox);
             InvoicesDetails.Controls.Add(AmountTextBox);
             InvoicesDetails.Controls.Add(ClientTextBox);
             InvoicesDetails.Controls.Add(PhoneNumTextBox);
@@ -97,8 +99,8 @@
             InvoicesDetails.Controls.Add(label3);
             InvoicesDetails.Controls.Add(InvoicesClient);
             InvoicesDetails.Controls.Add(PatronymicTextBox);
-            InvoicesDetails.Controls.Add(IsPaymentCompletedLabel);
             InvoicesDetails.Controls.Add(Patronymic);
+            InvoicesDetails.Controls.Add(label4);
             InvoicesDetails.Controls.Add(ReceiptLabel);
             InvoicesDetails.Controls.Add(CreationDateLabel);
             InvoicesDetails.Controls.Add(PaymentDateLabel);
@@ -119,6 +121,41 @@
             InvoicesDetails.MouseDown += InvoicesDetails_MouseDown;
             InvoicesDetails.MouseMove += InvoicesDetails_MouseMove;
             // 
+            // IsPaymentCompletedCheckBox
+            // 
+            IsPaymentCompletedCheckBox.AutoSize = true;
+            IsPaymentCompletedCheckBox.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            IsPaymentCompletedCheckBox.ForeColor = SystemColors.ButtonFace;
+            IsPaymentCompletedCheckBox.Location = new Point(34, 336);
+            IsPaymentCompletedCheckBox.Name = "IsPaymentCompletedCheckBox";
+            IsPaymentCompletedCheckBox.Size = new Size(15, 14);
+            IsPaymentCompletedCheckBox.TabIndex = 7;
+            IsPaymentCompletedCheckBox.UseVisualStyleBackColor = true;
+            IsPaymentCompletedCheckBox.Click += IsPaymentCompletedCheckBox_Click;
+            // 
+            // PayBeforePicker
+            // 
+            PayBeforePicker.Location = new Point(254, 262);
+            PayBeforePicker.Name = "PayBeforePicker";
+            PayBeforePicker.Size = new Size(170, 23);
+            PayBeforePicker.TabIndex = 3;
+            // 
+            // CreationDatePicker
+            // 
+            CreationDatePicker.Enabled = false;
+            CreationDatePicker.Location = new Point(254, 184);
+            CreationDatePicker.Name = "CreationDatePicker";
+            CreationDatePicker.Size = new Size(170, 23);
+            CreationDatePicker.TabIndex = 3;
+            // 
+            // PaymentDatePicker
+            // 
+            PaymentDatePicker.Checked = false;
+            PaymentDatePicker.Location = new Point(254, 334);
+            PaymentDatePicker.Name = "PaymentDatePicker";
+            PaymentDatePicker.Size = new Size(170, 23);
+            PaymentDatePicker.TabIndex = 3;
+            // 
             // ClientOfInvoice
             // 
             ClientOfInvoice.AutoSize = true;
@@ -134,9 +171,9 @@
             // 
             ServiceList.DisplayMember = "Service";
             ServiceList.FormattingEnabled = true;
-            ServiceList.Location = new Point(518, 474);
+            ServiceList.Location = new Point(546, 474);
             ServiceList.Name = "ServiceList";
-            ServiceList.Size = new Size(245, 23);
+            ServiceList.Size = new Size(206, 23);
             ServiceList.TabIndex = 5;
             ServiceList.ValueMember = "Id";
             ServiceList.SelectedIndexChanged += ServiceList_SelectedIndexChanged;
@@ -150,42 +187,24 @@
             ServiceDescrTextBox.Size = new Size(309, 23);
             ServiceDescrTextBox.TabIndex = 3;
             // 
-            // CreationDateTextBox
-            // 
-            CreationDateTextBox.Location = new Point(254, 184);
-            CreationDateTextBox.Name = "CreationDateTextBox";
-            CreationDateTextBox.ReadOnly = true;
-            CreationDateTextBox.Size = new Size(144, 23);
-            CreationDateTextBox.TabIndex = 3;
-            // 
-            // IsPaymentCompletedTextBox
-            // 
-            IsPaymentCompletedTextBox.Location = new Point(254, 334);
-            IsPaymentCompletedTextBox.Name = "IsPaymentCompletedTextBox";
-            IsPaymentCompletedTextBox.Size = new Size(144, 23);
-            IsPaymentCompletedTextBox.TabIndex = 3;
-            // 
             // ReceiptTextBox
             // 
-            ReceiptTextBox.Location = new Point(34, 334);
+            ReceiptTextBox.Location = new Point(34, 265);
             ReceiptTextBox.Name = "ReceiptTextBox";
             ReceiptTextBox.Size = new Size(144, 23);
             ReceiptTextBox.TabIndex = 3;
+            ReceiptTextBox.KeyPress += ReceiptTextBox_KeyPress;
             // 
-            // PaymentDateTextBox
+            // InvoiceIdTextBox
             // 
-            PaymentDateTextBox.Location = new Point(254, 262);
-            PaymentDateTextBox.Name = "PaymentDateTextBox";
-            PaymentDateTextBox.ReadOnly = true;
-            PaymentDateTextBox.Size = new Size(144, 23);
-            PaymentDateTextBox.TabIndex = 3;
-            // 
-            // PayBeforeTextBox
-            // 
-            PayBeforeTextBox.Location = new Point(34, 262);
-            PayBeforeTextBox.Name = "PayBeforeTextBox";
-            PayBeforeTextBox.Size = new Size(144, 23);
-            PayBeforeTextBox.TabIndex = 3;
+            InvoiceIdTextBox.BackColor = Color.FromArgb(38, 46, 54);
+            InvoiceIdTextBox.BorderStyle = BorderStyle.None;
+            InvoiceIdTextBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            InvoiceIdTextBox.ForeColor = SystemColors.ButtonFace;
+            InvoiceIdTextBox.Location = new Point(117, 107);
+            InvoiceIdTextBox.Name = "InvoiceIdTextBox";
+            InvoiceIdTextBox.Size = new Size(144, 26);
+            InvoiceIdTextBox.TabIndex = 3;
             // 
             // AmountTextBox
             // 
@@ -215,7 +234,7 @@
             ServiceName.AutoSize = true;
             ServiceName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             ServiceName.ForeColor = SystemColors.ButtonFace;
-            ServiceName.Location = new Point(518, 441);
+            ServiceName.Location = new Point(546, 441);
             ServiceName.Name = "ServiceName";
             ServiceName.Size = new Size(148, 21);
             ServiceName.TabIndex = 4;
@@ -237,7 +256,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(518, 387);
+            label2.Location = new Point(546, 385);
             label2.Name = "label2";
             label2.Size = new Size(78, 25);
             label2.TabIndex = 4;
@@ -269,12 +288,12 @@
             UpdateInvoiceButton.TabIndex = 2;
             UpdateInvoiceButton.Text = "Сохранить";
             UpdateInvoiceButton.UseVisualStyleBackColor = true;
-            //UpdateInvoiceButton.Click += UpdateInvoiceButton_Click; 
+            UpdateInvoiceButton.Click += UpdateInvoiceButton_Click;
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(58, 69, 80);
-            panel3.Location = new Point(452, 91);
+            panel3.Location = new Point(484, 91);
             panel3.Name = "panel3";
             panel3.Size = new Size(20, 450);
             panel3.TabIndex = 6;
@@ -282,10 +301,10 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(58, 69, 80);
-            panel4.Location = new Point(472, 337);
+            panel4.Location = new Point(504, 337);
             panel4.Margin = new Padding(0);
             panel4.Name = "panel4";
-            panel4.Size = new Size(661, 20);
+            panel4.Size = new Size(629, 20);
             panel4.TabIndex = 6;
             // 
             // EmailTextBox
@@ -303,9 +322,9 @@
             label3.ForeColor = SystemColors.ButtonFace;
             label3.Location = new Point(34, 108);
             label3.Name = "label3";
-            label3.Size = new Size(54, 25);
+            label3.Size = new Size(82, 25);
             label3.TabIndex = 4;
-            label3.Text = "Счет";
+            label3.Text = "Счет №";
             // 
             // InvoicesClient
             // 
@@ -327,18 +346,6 @@
             PatronymicTextBox.Size = new Size(144, 23);
             PatronymicTextBox.TabIndex = 3;
             // 
-            // IsPaymentCompletedLabel
-            // 
-            IsPaymentCompletedLabel.AutoSize = true;
-            IsPaymentCompletedLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            IsPaymentCompletedLabel.ForeColor = SystemColors.ButtonFace;
-            IsPaymentCompletedLabel.Location = new Point(254, 307);
-            IsPaymentCompletedLabel.Name = "IsPaymentCompletedLabel";
-            IsPaymentCompletedLabel.Size = new Size(112, 21);
-            IsPaymentCompletedLabel.TabIndex = 4;
-            IsPaymentCompletedLabel.Text = "Счет оплачен";
-            IsPaymentCompletedLabel.UseMnemonic = false;
-            // 
             // Patronymic
             // 
             Patronymic.AutoSize = true;
@@ -350,12 +357,24 @@
             Patronymic.TabIndex = 4;
             Patronymic.Text = "Отчество";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ButtonFace;
+            label4.Location = new Point(34, 307);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 21);
+            label4.TabIndex = 4;
+            label4.Text = "Статус счета";
+            label4.UseMnemonic = false;
+            // 
             // ReceiptLabel
             // 
             ReceiptLabel.AutoSize = true;
             ReceiptLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             ReceiptLabel.ForeColor = SystemColors.ButtonFace;
-            ReceiptLabel.Location = new Point(34, 307);
+            ReceiptLabel.Location = new Point(34, 238);
             ReceiptLabel.Name = "ReceiptLabel";
             ReceiptLabel.Size = new Size(148, 21);
             ReceiptLabel.TabIndex = 4;
@@ -379,7 +398,7 @@
             PaymentDateLabel.AutoSize = true;
             PaymentDateLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             PaymentDateLabel.ForeColor = SystemColors.ButtonFace;
-            PaymentDateLabel.Location = new Point(254, 235);
+            PaymentDateLabel.Location = new Point(254, 307);
             PaymentDateLabel.Name = "PaymentDateLabel";
             PaymentDateLabel.Size = new Size(104, 21);
             PaymentDateLabel.TabIndex = 4;
@@ -403,7 +422,7 @@
             PayBeforeLabel.AutoSize = true;
             PayBeforeLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             PayBeforeLabel.ForeColor = SystemColors.ButtonFace;
-            PayBeforeLabel.Location = new Point(34, 235);
+            PayBeforeLabel.Location = new Point(254, 235);
             PayBeforeLabel.Name = "PayBeforeLabel";
             PayBeforeLabel.Size = new Size(103, 21);
             PayBeforeLabel.TabIndex = 4;
@@ -558,15 +577,16 @@
         private Label label3;
         private TextBox AmountTextBox;
         private Label AmountLabel;
-        private TextBox CreationDateTextBox;
-        private TextBox IsPaymentCompletedTextBox;
         private TextBox ReceiptTextBox;
-        private TextBox PaymentDateTextBox;
-        private TextBox PayBeforeTextBox;
-        private Label IsPaymentCompletedLabel;
         private Label ReceiptLabel;
         private Label CreationDateLabel;
         private Label PaymentDateLabel;
         private Label PayBeforeLabel;
+        private DateTimePicker PaymentDatePicker;
+        private DateTimePicker PayBeforePicker;
+        private DateTimePicker CreationDatePicker;
+        private CheckBox IsPaymentCompletedCheckBox;
+        private Label label4;
+        private TextBox InvoiceIdTextBox;
     }
 }

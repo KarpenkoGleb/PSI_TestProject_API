@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PSI_WinForms.DTO;
 using System.Text;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PSI_WinForms
 {
@@ -17,6 +18,8 @@ namespace PSI_WinForms
 
             _InvoiceId = invoiceId;
 
+            InvoiceIdTextBox.Text = invoiceId.ToString();
+
         }
 
         //=============     Loading data for text boxes     =================
@@ -27,17 +30,20 @@ namespace PSI_WinForms
             {
                 var data = await GetDataOfInvoiceByIdAsync(invoiceId);
 
+
                 AmountTextBox.Text = data?.Amount.ToString();
 
-                CreationDateTextBox.Text = data?.CreationDate.ToString();
+                CreationDatePicker.Text = data?.CreationDate.ToString();
 
-                PayBeforeTextBox.Text = data?.PayBefore.ToString();
+                PayBeforePicker.Text = data?.PayBefore.ToString();
 
-                PaymentDateTextBox.Text = data?.PaymentDate.ToString();
+                PaymentDatePicker.Text = data?.PaymentDate.ToString();
 
                 ReceiptTextBox.Text = data?.receiptId.ToString();
 
-                IsPaymentCompletedTextBox.Text = data?.IsPaymentCompleted.ToString();
+                IsPaymentCompletedCheckBox.Checked = Convert.ToBoolean(data?.IsPaymentCompleted);
+
+                ChangeTextOfIsPaymentCompletedCheckBox();
 
                 ClientsList.SelectedValue = data?.ClientId;
 
@@ -307,51 +313,79 @@ namespace PSI_WinForms
 
         //============= BUTTON action =================
 
-        //private void UpdateInvoiceButton_Click(object sender, EventArgs e)
-        //{
-        //    InvoicesDTO newInvoice = new InvoicesDTO();
+        private void UpdateInvoiceButton_Click(object sender, EventArgs e)
+        {
+            InvoicesDTO newInvoice = new InvoicesDTO();
 
-        //    newInvoice.Id = _InvoiceId;
-        //    newInvoice.ServiceId = (int)ServiceList.SelectedValue;
-        //    newInvoice.ServiceId = (int)ClientsList.SelectedValue;
-        //    newInvoice.Amount = AmountTextBox.Text;
-        //    newInvoice.CreationDate = CreationDateTextBox.Text;
-        //    newInvoice.Surname = SurnameTextBox.Text;
-        //    newInvoice.Email = EmailTextBox.Text;
-        //    newInvoice.Patronymic = PatronymicTextBox.Text;
+            newInvoice.Id = _InvoiceId;
+            newInvoice.ServiceId = (int)ServiceList.SelectedValue;
+            newInvoice.ClientId = (int)ClientsList.SelectedValue;
+            newInvoice.Amount = Int32.Parse(AmountTextBox.Text);
+            newInvoice.CreationDate = DateTime.Parse("2023-08-29 00:34:47.1970000");        //CreationDatePicker.Text;
+            newInvoice.PayBefore = DateTime.Parse("2023-08-29 00:34:47.1970000");     //PayBeforePicker.Text;
+            newInvoice.PaymentDate = DateTime.Parse(PaymentDatePicker.Text);  // DateTime.Parse("2023-08-29 00:34:47.1970000");        //PaymentDateTextBox.Text;
+            newInvoice.receiptId = ReceiptTextBox.Text == "" ? null : Int32.Parse(ReceiptTextBox.Text);
+            newInvoice.IsPaymentCompleted = Convert.ToBoolean(IsPaymentCompletedCheckBox.Checked);
 
-        //    PutClientAsync(newInvoice, _InvoiceId);
-        //}
+            PutInvoiceAsync(newInvoice, _InvoiceId);
+        }
 
-        //private async Task PutClientAsync(ClientsDTO newInvoice, int ClientId)
-        //{
-        //    string json = JsonSerializer.Serialize(newInvoice);
+        private async Task PutInvoiceAsync(InvoicesDTO newInvoice, int invoiceId)
+        {
+            string json = JsonSerializer.Serialize(newInvoice);
 
 
-        //    using (HttpClient client = new HttpClient())
-        //    {
-        //        client.BaseAddress = new Uri("https://localhost:7168/");
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7168/");
 
-        //        StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        //        HttpResponseMessage response = await client.PutAsync(string.Format("api/Clients/{0}", ClientId), content);
-        //        //HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+                HttpResponseMessage response = await client.PutAsync(string.Format("api/Invoices/{0}", invoiceId), content);
+                //HttpResponseMessage response = await client.PutAsync(apiUrl, content);
 
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            string responseContent = await response.Content.ReadAsStringAsync();
-        //            Console.WriteLine("Response: " + responseContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("Response: " + responseContent);
 
-        //            MessageBox.Show("Данные клиента успешно обновлены");
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Error: " + response.StatusCode);
+                    MessageBox.Show("Данные счета успешно обновлены");
+                }
+                else
+                {
+                    Console.WriteLine("Error: " + response.StatusCode);
 
-        //            MessageBox.Show("При изменении данных клиента произошла ошибка. Попробуйте еще раз");
-        //        }
-        //    }
-        //}
+                    MessageBox.Show("При изменении данных счета произошла ошибка. Попробуйте еще раз");
+                }
+            }
+        }
+
+        private void ReceiptTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
+        }
+
+        private void ChangeTextOfIsPaymentCompletedCheckBox()
+        {
+            if (IsPaymentCompletedCheckBox.Checked == true)
+                IsPaymentCompletedCheckBox.Text = "Оплачен";
+            else
+                IsPaymentCompletedCheckBox.Text = "Не оплачен";
+        }
+
+        private void IsPaymentCompletedCheckBox_Click(object sender, EventArgs e)
+        {
+            ChangeTextOfIsPaymentCompletedCheckBox();
+        }
         //=============     END     =================
 
 

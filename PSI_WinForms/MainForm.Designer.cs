@@ -32,6 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panel1 = new Panel();
             InvoicesDataGrid = new DataGridView();
+            GetInvoicesButton = new Button();
+            ShowClientsButton = new Button();
+            ShowServicesButton = new Button();
+            panel2 = new Panel();
+            closeButton = new Label();
+            label1 = new Label();
             LinkToInvoiceDetails = new DataGridViewImageColumn();
             Id = new DataGridViewTextBoxColumn();
             ServiceId = new DataGridViewTextBoxColumn();
@@ -44,12 +50,6 @@
             PaymentDate = new DataGridViewTextBoxColumn();
             ReceiptId = new DataGridViewTextBoxColumn();
             IsPaymentCompleted = new DataGridViewCheckBoxColumn();
-            GetInvoicesButton = new Button();
-            ShowClientsButton = new Button();
-            ShowServicesButton = new Button();
-            panel2 = new Panel();
-            closeButton = new Label();
-            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)InvoicesDataGrid).BeginInit();
             panel2.SuspendLayout();
@@ -90,6 +90,81 @@
             InvoicesDataGrid.TabIndex = 3;
             InvoicesDataGrid.CellContentClick += InvoicesDataGrid_CellContentClick;
             InvoicesDataGrid.CellContentDoubleClick += InvoicesDataGrid_CellContentClick;
+            // 
+            // GetInvoicesButton
+            // 
+            GetInvoicesButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            GetInvoicesButton.Location = new Point(0, 89);
+            GetInvoicesButton.Name = "GetInvoicesButton";
+            GetInvoicesButton.Size = new Size(129, 50);
+            GetInvoicesButton.TabIndex = 2;
+            GetInvoicesButton.Text = "Счета";
+            GetInvoicesButton.UseVisualStyleBackColor = true;
+            GetInvoicesButton.Click += getInvoicesButton_Click;
+            // 
+            // ShowClientsButton
+            // 
+            ShowClientsButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ShowClientsButton.Location = new Point(135, 89);
+            ShowClientsButton.Name = "ShowClientsButton";
+            ShowClientsButton.Size = new Size(129, 34);
+            ShowClientsButton.TabIndex = 2;
+            ShowClientsButton.Text = "Клиенты";
+            ShowClientsButton.UseVisualStyleBackColor = true;
+            ShowClientsButton.Click += ShowClientsButton_Click;
+            // 
+            // ShowServicesButton
+            // 
+            ShowServicesButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            ShowServicesButton.Location = new Point(270, 89);
+            ShowServicesButton.Name = "ShowServicesButton";
+            ShowServicesButton.Size = new Size(129, 34);
+            ShowServicesButton.TabIndex = 2;
+            ShowServicesButton.Text = "Сервисы";
+            ShowServicesButton.UseVisualStyleBackColor = true;
+            ShowServicesButton.Click += ShowServicesButton_Click;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(8, 24, 70);
+            panel2.Controls.Add(closeButton);
+            panel2.Controls.Add(label1);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(800, 90);
+            panel2.TabIndex = 0;
+            // 
+            // closeButton
+            // 
+            closeButton.AutoSize = true;
+            closeButton.BackColor = Color.FromArgb(22, 26, 31);
+            closeButton.Cursor = Cursors.Hand;
+            closeButton.Dock = DockStyle.Right;
+            closeButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            closeButton.ForeColor = SystemColors.AppWorkspace;
+            closeButton.Location = new Point(775, 0);
+            closeButton.Margin = new Padding(2, 0, 2, 0);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new Size(25, 32);
+            closeButton.TabIndex = 1;
+            closeButton.Text = "x";
+            closeButton.Click += closeButton_Click;
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.FromArgb(22, 26, 31);
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Bookman Old Style", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ButtonFace;
+            label1.Location = new Point(0, 0);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(800, 90);
+            label1.TabIndex = 0;
+            label1.Text = "Главный экран";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // LinkToInvoiceDetails
             // 
@@ -176,81 +251,6 @@
             IsPaymentCompleted.Resizable = DataGridViewTriState.True;
             IsPaymentCompleted.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
-            // GetInvoicesButton
-            // 
-            GetInvoicesButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            GetInvoicesButton.Location = new Point(0, 89);
-            GetInvoicesButton.Name = "GetInvoicesButton";
-            GetInvoicesButton.Size = new Size(129, 50);
-            GetInvoicesButton.TabIndex = 2;
-            GetInvoicesButton.Text = "Счета";
-            GetInvoicesButton.UseVisualStyleBackColor = true;
-            GetInvoicesButton.Click += getInvoicesButton_Click;
-            // 
-            // ShowClientsButton
-            // 
-            ShowClientsButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ShowClientsButton.Location = new Point(135, 89);
-            ShowClientsButton.Name = "ShowClientsButton";
-            ShowClientsButton.Size = new Size(129, 34);
-            ShowClientsButton.TabIndex = 2;
-            ShowClientsButton.Text = "Клиенты";
-            ShowClientsButton.UseVisualStyleBackColor = true;
-            ShowClientsButton.Click += ShowClientsButton_Click;
-            // 
-            // ShowServicesButton
-            // 
-            ShowServicesButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            ShowServicesButton.Location = new Point(270, 89);
-            ShowServicesButton.Name = "ShowServicesButton";
-            ShowServicesButton.Size = new Size(129, 34);
-            ShowServicesButton.TabIndex = 2;
-            ShowServicesButton.Text = "Сервисы";
-            ShowServicesButton.UseVisualStyleBackColor = true;
-            ShowServicesButton.Click += ShowServicesButton_Click;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(8, 24, 70);
-            panel2.Controls.Add(closeButton);
-            panel2.Controls.Add(label1);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(800, 90);
-            panel2.TabIndex = 0;
-            // 
-            // closeButton
-            // 
-            closeButton.AutoSize = true;
-            closeButton.BackColor = Color.FromArgb(22, 26, 31);
-            closeButton.Cursor = Cursors.Hand;
-            closeButton.Dock = DockStyle.Right;
-            closeButton.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            closeButton.ForeColor = SystemColors.AppWorkspace;
-            closeButton.Location = new Point(775, 0);
-            closeButton.Margin = new Padding(2, 0, 2, 0);
-            closeButton.Name = "closeButton";
-            closeButton.Size = new Size(25, 32);
-            closeButton.TabIndex = 1;
-            closeButton.Text = "x";
-            closeButton.Click += closeButton_Click;
-            // 
-            // label1
-            // 
-            label1.BackColor = Color.FromArgb(22, 26, 31);
-            label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Bookman Old Style", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(0, 0);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(800, 90);
-            label1.TabIndex = 0;
-            label1.Text = "Главный экран";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -277,6 +277,9 @@
         private Label label1;
         private Button GetInvoicesButton;
         private DataGridView InvoicesDataGrid;
+        private Button button1;
+        private Button ShowServicesButton;
+        private Button ShowClientsButton;
         private DataGridViewImageColumn LinkToInvoiceDetails;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn ServiceId;
@@ -289,8 +292,5 @@
         private DataGridViewTextBoxColumn PaymentDate;
         private DataGridViewTextBoxColumn ReceiptId;
         private DataGridViewCheckBoxColumn IsPaymentCompleted;
-        private Button button1;
-        private Button ShowServicesButton;
-        private Button ShowClientsButton;
     }
 }
