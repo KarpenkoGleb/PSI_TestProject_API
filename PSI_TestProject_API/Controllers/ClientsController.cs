@@ -47,6 +47,22 @@ namespace PSI_TestProject_API.Controllers
             return Ok(client);
         }
 
+        [HttpGet("byLogin/{login}")]
+        [ProducesResponseType(200, Type = typeof(Clients))]
+        [ProducesResponseType(400)]
+        public IActionResult GetClientByLogin(string login)
+        {
+            if (!_clientsRepository.ClientExistsWithLpgin(login))
+                return NotFound();
+
+            var client = _mapper.Map<ClientsDto>(_clientsRepository.GetClientByLogin(login));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(client);
+        }
+
         [HttpGet("/clients/{invoiceId}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(200, Type = typeof(Clients))]

@@ -8,17 +8,41 @@ namespace PSI_WinForms
     public partial class UpdateInvoiceForm : Form
     {
         private int _InvoiceId;
+
+        private int _createdInvoiceId = 0;
+
         public UpdateInvoiceForm(int invoiceId)
         {
-            InitializeComponent();
-            LoadDataOfInvoiceByAsync(invoiceId);
+            if (invoiceId == -1)
+            {
+                InitializeComponent();
 
-            LoadListDataOfClientsAsync();
-            LoadListDataOfServicesAsync();
+                DeleteInvoiceButton.Visible = false;
+                DeleteInvoiceButton.Enabled = false;
+
+                CreationDatePicker.Enabled = true;
+                IsPaymentCompletedCheckBox.Checked = false;
+                ChangeTextOfIsPaymentCompletedCheckBox();
+                PaymentDatePicker.Enabled = IsPaymentCompletedCheckBox.Checked;
+
+                ClientsList.ForeColor = SystemColors.WindowFrame;
+                ServiceList.ForeColor = SystemColors.WindowFrame;
+
+                InvoiceIdTextBox.Text = "_";
+
+            }
+            else
+            {
+                InitializeComponent();
+                LoadDataOfInvoiceByAsync(invoiceId);
+
+                LoadListDataOfClientsAsync();
+                LoadListDataOfServicesAsync();
+
+                InvoiceIdTextBox.Text = invoiceId.ToString();
+            }
 
             _InvoiceId = invoiceId;
-
-            InvoiceIdTextBox.Text = invoiceId.ToString();
 
         }
 
@@ -44,6 +68,8 @@ namespace PSI_WinForms
                 IsPaymentCompletedCheckBox.Checked = Convert.ToBoolean(data?.IsPaymentCompleted);
 
                 ChangeTextOfIsPaymentCompletedCheckBox();
+
+                PaymentDatePicker.Enabled = IsPaymentCompletedCheckBox.Checked;
 
                 ClientsList.SelectedValue = data?.ClientId;
 
@@ -95,6 +121,17 @@ namespace PSI_WinForms
 
         //=============     Loading dropdown list of Clients        =================
 
+        private void ClientsList_Click(object sender, EventArgs e)
+        {
+            if (ClientsList.DataSource == null)
+            {
+                LoadListDataOfClientsAsync();
+
+                ClientsList.ForeColor = Color.Black;
+            }
+        }
+
+
         private async void LoadListDataOfClientsAsync()
         {
             try
@@ -134,6 +171,17 @@ namespace PSI_WinForms
 
 
         //=============     Loading dropdown list of Services    =============
+
+        private void ServiceList_Click(object sender, EventArgs e)
+        {
+            if (ServiceList.DataSource == null)
+            {
+                LoadListDataOfServicesAsync();
+
+                ServiceList.ForeColor = Color.Black;
+            }
+
+        }
 
         private async void LoadListDataOfServicesAsync()
         {
@@ -252,9 +300,11 @@ namespace PSI_WinForms
 
         private void ClientsList_DropDownClosed(object sender, EventArgs e)
         {
-            var clientId = (int)ClientsList.SelectedValue;
-
-            LoadDataOfClientByAsync(clientId);
+            if (ClientsList.SelectedValue != null)
+            {
+                var clientId = (int)ClientsList.SelectedValue;
+                LoadDataOfClientByAsync(clientId);
+            }
         }
 
         //=============     END     =================
@@ -302,10 +352,11 @@ namespace PSI_WinForms
 
         private void ServiceList_DropDownClosed(object sender, EventArgs e)
         {
-            var serviceId = (int)ServiceList.SelectedValue;
-
-            LoadDataOfServiceByAsync(serviceId);
-
+            if (ServiceList.SelectedValue != null)
+            {
+                var serviceId = (int)ServiceList.SelectedValue;
+                LoadDataOfServiceByAsync(serviceId);
+            }
         }
 
         //=============     END     =================
@@ -313,21 +364,64 @@ namespace PSI_WinForms
 
         //============= BUTTON action =================
 
-        private void UpdateInvoiceButton_Click(object sender, EventArgs e)
+        private async void UpdateInvoiceButton_Click(object sender, EventArgs e)
         {
             InvoicesDTO newInvoice = new InvoicesDTO();
 
-            newInvoice.Id = _InvoiceId;
             newInvoice.ServiceId = (int)ServiceList.SelectedValue;
             newInvoice.ClientId = (int)ClientsList.SelectedValue;
             newInvoice.Amount = Int32.Parse(AmountTextBox.Text);
-            newInvoice.CreationDate = DateTime.Parse("2023-08-29 00:34:47.1970000");        //CreationDatePicker.Text;
-            newInvoice.PayBefore = DateTime.Parse("2023-08-29 00:34:47.1970000");     //PayBeforePicker.Text;
-            newInvoice.PaymentDate = DateTime.Parse(PaymentDatePicker.Text);  // DateTime.Parse("2023-08-29 00:34:47.1970000");        //PaymentDateTextBox.Text;
+            newInvoice.CreationDate = DateTime.Parse(CreationDatePicker.Text);        //CreationDatePicker.Text;
+            newInvoice.PayBefore = DateTime.Parse(PayBeforePicker.Text);     //PayBeforePicker.Text;
+            newInvoice.PaymentDate = IsPaymentCompletedCheckBox.Checked ? DateTime.Parse(PaymentDatePicker.Text) : null;
             newInvoice.receiptId = ReceiptTextBox.Text == "" ? null : Int32.Parse(ReceiptTextBox.Text);
             newInvoice.IsPaymentCompleted = Convert.ToBoolean(IsPaymentCompletedCheckBox.Checked);
 
-            PutInvoiceAsync(newInvoice, _InvoiceId);
+            if (_InvoiceId == -1)
+            {
+                newInvoice.Id = 0;
+                PostInvoiceAsync(newInvoice);
+            }
+            else
+            {
+                newInvoice.Id = _InvoiceId;
+                PutInvoiceAsync(newInvoice, _InvoiceId);
+            }
+        }
+
+        private async Task PostInvoiceAsync(InvoicesDTO newInvoice)
+        {
+            string json = JsonSerializer.Serialize(newInvoice);
+
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7168/");
+
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync(string.Format("api/Invoices/"), content);
+                //HttpResponseMessage response = await client.PutAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("Created invoice Id: " + responseContent);
+
+                    MessageBox.Show("Счет успешно создан");
+
+                    _createdInvoiceId = Convert.ToInt32(responseContent);
+                    this.Close();
+                    UpdateInvoiceForm updateInvoiceForm = new UpdateInvoiceForm(_createdInvoiceId);
+                    updateInvoiceForm.Show();
+                }
+                else
+                {
+                    Console.WriteLine("Error: " + response.StatusCode);
+
+                    MessageBox.Show("При создании счета произошла ошибка. Попробуйте еще раз");
+                }
+            }
         }
 
         private async Task PutInvoiceAsync(InvoicesDTO newInvoice, int invoiceId)
@@ -385,7 +479,49 @@ namespace PSI_WinForms
         private void IsPaymentCompletedCheckBox_Click(object sender, EventArgs e)
         {
             ChangeTextOfIsPaymentCompletedCheckBox();
+            PaymentDatePicker.Enabled = IsPaymentCompletedCheckBox.Checked;
         }
+
+        //=============     END     =================
+
+
+        //============= DELETE invoice =================
+
+        private void DeleteInvoiceButton_Click(object sender, EventArgs e)
+        {
+            DeleteInvoiceAsync(_InvoiceId);
+
+            this.Close();
+            //MainForm mainForm = new MainForm();
+            //mainForm.Show();
+
+        }
+
+        private async Task DeleteInvoiceAsync(int invoiceId)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:7168/");
+
+                HttpResponseMessage response = await client.DeleteAsync(string.Format("api/Invoices/{0}", invoiceId));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("Response: " + responseContent);
+
+                    MessageBox.Show("Счет успешно удален");
+                }
+                else
+                {
+                    Console.WriteLine("Error: " + response.StatusCode);
+
+                    MessageBox.Show("При удалении счета произошла ошибка. Попробуйте еще раз");
+                }
+            }
+        }
+
+
         //=============     END     =================
 
 

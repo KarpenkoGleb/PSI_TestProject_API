@@ -46,6 +46,7 @@
             label2 = new Label();
             SurnameTextBox = new TextBox();
             panel1 = new Panel();
+            DeleteInvoiceButton = new Button();
             UpdateInvoiceButton = new Button();
             panel3 = new Panel();
             panel4 = new Panel();
@@ -170,14 +171,17 @@
             // ServiceList
             // 
             ServiceList.DisplayMember = "Service";
+            ServiceList.ForeColor = Color.Black;
             ServiceList.FormattingEnabled = true;
             ServiceList.Location = new Point(546, 474);
             ServiceList.Name = "ServiceList";
             ServiceList.Size = new Size(206, 23);
             ServiceList.TabIndex = 5;
+            ServiceList.Text = "Выберите сервис";
             ServiceList.ValueMember = "Id";
             ServiceList.SelectedIndexChanged += ServiceList_SelectedIndexChanged;
             ServiceList.DropDownClosed += ServiceList_DropDownClosed;
+            ServiceList.Click += ServiceList_Click;
             // 
             // ServiceDescrTextBox
             // 
@@ -210,6 +214,7 @@
             // 
             AmountTextBox.Location = new Point(34, 184);
             AmountTextBox.Name = "AmountTextBox";
+            AmountTextBox.PlaceholderText = "Укажите сумму";
             AmountTextBox.Size = new Size(144, 23);
             AmountTextBox.TabIndex = 3;
             // 
@@ -243,13 +248,17 @@
             // ClientsList
             // 
             ClientsList.DisplayMember = "Login";
+            ClientsList.ForeColor = Color.Black;
             ClientsList.FormattingEnabled = true;
             ClientsList.Location = new Point(546, 184);
             ClientsList.Name = "ClientsList";
             ClientsList.Size = new Size(138, 23);
             ClientsList.TabIndex = 5;
+            ClientsList.Tag = "";
+            ClientsList.Text = "Выберите логин";
             ClientsList.ValueMember = "Id";
             ClientsList.DropDownClosed += ClientsList_DropDownClosed;
+            ClientsList.Click += ClientsList_Click;
             // 
             // label2
             // 
@@ -273,11 +282,27 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(58, 69, 80);
+            panel1.Controls.Add(DeleteInvoiceButton);
             panel1.Controls.Add(UpdateInvoiceButton);
             panel1.Location = new Point(0, 540);
             panel1.Name = "panel1";
             panel1.Size = new Size(1134, 60);
             panel1.TabIndex = 6;
+            // 
+            // DeleteInvoiceButton
+            // 
+            DeleteInvoiceButton.BackColor = Color.FromArgb(33, 33, 34);
+            DeleteInvoiceButton.BackgroundImageLayout = ImageLayout.None;
+            DeleteInvoiceButton.FlatStyle = FlatStyle.Popup;
+            DeleteInvoiceButton.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteInvoiceButton.ForeColor = SystemColors.ControlLight;
+            DeleteInvoiceButton.Location = new Point(12, 13);
+            DeleteInvoiceButton.Name = "DeleteInvoiceButton";
+            DeleteInvoiceButton.Size = new Size(149, 34);
+            DeleteInvoiceButton.TabIndex = 8;
+            DeleteInvoiceButton.Text = "Удалить счет";
+            DeleteInvoiceButton.UseVisualStyleBackColor = false;
+            DeleteInvoiceButton.Click += DeleteInvoiceButton_Click;
             // 
             // UpdateInvoiceButton
             // 
@@ -588,5 +613,6 @@
         private CheckBox IsPaymentCompletedCheckBox;
         private Label label4;
         private TextBox InvoiceIdTextBox;
+        private Button DeleteInvoiceButton;
     }
 }

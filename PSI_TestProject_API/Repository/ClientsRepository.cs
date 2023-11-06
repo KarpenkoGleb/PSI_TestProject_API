@@ -22,6 +22,10 @@ namespace PSI_TestProject_API.Repository
         {
             return _context.Clients.Any(c => c.Id == clientId);
         }
+        public bool ClientExistsWithLpgin(string login)
+        {
+            return _context.Clients.Any(c => c.Login == login);
+        }
 
         public bool CreateClient(Clients client)
         {
@@ -44,6 +48,12 @@ namespace PSI_TestProject_API.Repository
         {
             return _context.Invoices.Where(o => o.Id == invoiceId).Select(c => c.Client).FirstOrDefault();
         }
+
+        public Clients GetClientByLogin(string login)
+        {
+            return _context.Clients.Where(o => o.Login == login).FirstOrDefault();
+        }
+
 
         public ICollection<Clients> GetClients()
         {

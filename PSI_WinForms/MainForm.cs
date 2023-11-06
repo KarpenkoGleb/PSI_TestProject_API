@@ -28,6 +28,16 @@ namespace PSI_WinForms
 
         }
 
+        private void CreateInvoiceButton_Click(object sender, EventArgs e)
+        {
+            int invoiceId = -1;
+
+            //int.tryparse
+
+            UpdateInvoiceForm invoiceDetails = new UpdateInvoiceForm(invoiceId);
+            invoiceDetails.Show();
+        }
+
         //============= Buttons actions =================
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -85,12 +95,12 @@ namespace PSI_WinForms
                     ServiceName = dto.Service.Service,
                     ClientLogin = dto.Client.Login,
                     ClientId = dto.ClientId,
-                    Amount = dto.Amount,
-                    CreationDate = dto.CreationDate,
                     PayBefore = dto.PayBefore,
                     PaymentDate = dto.PaymentDate,
                     receiptId = dto.receiptId,
-                    IsPaymentCompleted = dto.IsPaymentCompleted
+                    IsPaymentCompleted = dto.IsPaymentCompleted,
+                    Amount = dto.Amount,
+                    CreationDate = dto.CreationDate
 
                 }).ToList();
 
@@ -122,6 +132,7 @@ namespace PSI_WinForms
                 }
             }
         }
+
 
         //==============    END     ==================
 

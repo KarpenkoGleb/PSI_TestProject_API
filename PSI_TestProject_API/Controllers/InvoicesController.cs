@@ -128,7 +128,7 @@ namespace PSI_TestProject_API.Controllers
                 return BadRequest(ModelState);
 
             var invoices = _invoicesRepository.GetInvoices()
-                .Where(c => c.receiptId == invoiceCreate.receiptId)
+                .Where(c => c.receiptId != null && c.receiptId == invoiceCreate.receiptId)
                 .FirstOrDefault();
 
             if (invoices != null)
@@ -150,7 +150,7 @@ namespace PSI_TestProject_API.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return Ok("Successfully created");
+            return Ok(invoiceMap.Id);  // invoiceMap.Id        Ok("Successfully created")
         }
 
         [HttpPut("{invoiceId}")]

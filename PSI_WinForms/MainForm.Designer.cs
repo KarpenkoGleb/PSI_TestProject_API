@@ -31,6 +31,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panel1 = new Panel();
+            CreateInvoiceButton = new Button();
             InvoicesDataGrid = new DataGridView();
             GetInvoicesButton = new Button();
             ShowClientsButton = new Button();
@@ -44,12 +45,12 @@
             ClientId = new DataGridViewTextBoxColumn();
             ServiceName = new DataGridViewTextBoxColumn();
             ClientLogin = new DataGridViewTextBoxColumn();
-            Amount = new DataGridViewTextBoxColumn();
-            CreationDate = new DataGridViewTextBoxColumn();
-            PayBefore = new DataGridViewTextBoxColumn();
-            PaymentDate = new DataGridViewTextBoxColumn();
             ReceiptId = new DataGridViewTextBoxColumn();
             IsPaymentCompleted = new DataGridViewCheckBoxColumn();
+            PaymentDate = new DataGridViewTextBoxColumn();
+            PayBefore = new DataGridViewTextBoxColumn();
+            Amount = new DataGridViewTextBoxColumn();
+            CreationDate = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)InvoicesDataGrid).BeginInit();
             panel2.SuspendLayout();
@@ -58,6 +59,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(38, 46, 54);
+            panel1.Controls.Add(CreateInvoiceButton);
             panel1.Controls.Add(InvoicesDataGrid);
             panel1.Controls.Add(GetInvoicesButton);
             panel1.Controls.Add(ShowClientsButton);
@@ -70,11 +72,22 @@
             panel1.Size = new Size(800, 500);
             panel1.TabIndex = 1;
             // 
+            // CreateInvoiceButton
+            // 
+            CreateInvoiceButton.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            CreateInvoiceButton.Location = new Point(12, 444);
+            CreateInvoiceButton.Name = "CreateInvoiceButton";
+            CreateInvoiceButton.Size = new Size(161, 34);
+            CreateInvoiceButton.TabIndex = 4;
+            CreateInvoiceButton.Text = "Добавить счет";
+            CreateInvoiceButton.UseVisualStyleBackColor = true;
+            CreateInvoiceButton.Click += CreateInvoiceButton_Click;
+            // 
             // InvoicesDataGrid
             // 
             InvoicesDataGrid.BackgroundColor = SystemColors.MenuBar;
             InvoicesDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            InvoicesDataGrid.Columns.AddRange(new DataGridViewColumn[] { LinkToInvoiceDetails, Id, ServiceId, ClientId, ServiceName, ClientLogin, Amount, CreationDate, PayBefore, PaymentDate, ReceiptId, IsPaymentCompleted });
+            InvoicesDataGrid.Columns.AddRange(new DataGridViewColumn[] { LinkToInvoiceDetails, Id, ServiceId, ClientId, ServiceName, ClientLogin, ReceiptId, IsPaymentCompleted, PaymentDate, PayBefore, Amount, CreationDate });
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.MenuBar;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -211,31 +224,8 @@
             ClientLogin.HeaderText = "Клиент";
             ClientLogin.Name = "ClientLogin";
             ClientLogin.Resizable = DataGridViewTriState.True;
+            ClientLogin.SortMode = DataGridViewColumnSortMode.NotSortable;
             ClientLogin.ToolTipText = "Click to go to Clients";
-            // 
-            // Amount
-            // 
-            Amount.DataPropertyName = "Amount";
-            Amount.HeaderText = "Сумма";
-            Amount.Name = "Amount";
-            // 
-            // CreationDate
-            // 
-            CreationDate.DataPropertyName = "CreationDate";
-            CreationDate.HeaderText = "Дата выставления";
-            CreationDate.Name = "CreationDate";
-            // 
-            // PayBefore
-            // 
-            PayBefore.DataPropertyName = "PayBefore";
-            PayBefore.HeaderText = "Оплатить до";
-            PayBefore.Name = "PayBefore";
-            // 
-            // PaymentDate
-            // 
-            PaymentDate.DataPropertyName = "PaymentDate";
-            PaymentDate.HeaderText = "Дата оплаты";
-            PaymentDate.Name = "PaymentDate";
             // 
             // ReceiptId
             // 
@@ -250,6 +240,30 @@
             IsPaymentCompleted.Name = "IsPaymentCompleted";
             IsPaymentCompleted.Resizable = DataGridViewTriState.True;
             IsPaymentCompleted.SortMode = DataGridViewColumnSortMode.Automatic;
+            // 
+            // PaymentDate
+            // 
+            PaymentDate.DataPropertyName = "PaymentDate";
+            PaymentDate.HeaderText = "Дата оплаты";
+            PaymentDate.Name = "PaymentDate";
+            // 
+            // PayBefore
+            // 
+            PayBefore.DataPropertyName = "PayBefore";
+            PayBefore.HeaderText = "Оплатить до";
+            PayBefore.Name = "PayBefore";
+            // 
+            // Amount
+            // 
+            Amount.DataPropertyName = "Amount";
+            Amount.HeaderText = "Сумма";
+            Amount.Name = "Amount";
+            // 
+            // CreationDate
+            // 
+            CreationDate.DataPropertyName = "CreationDate";
+            CreationDate.HeaderText = "Дата выставления";
+            CreationDate.Name = "CreationDate";
             // 
             // MainForm
             // 
@@ -280,17 +294,18 @@
         private Button button1;
         private Button ShowServicesButton;
         private Button ShowClientsButton;
+        private Button CreateInvoiceButton;
         private DataGridViewImageColumn LinkToInvoiceDetails;
         private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn ServiceId;
         private DataGridViewTextBoxColumn ClientId;
         private DataGridViewTextBoxColumn ServiceName;
         private DataGridViewTextBoxColumn ClientLogin;
-        private DataGridViewTextBoxColumn Amount;
-        private DataGridViewTextBoxColumn CreationDate;
-        private DataGridViewTextBoxColumn PayBefore;
-        private DataGridViewTextBoxColumn PaymentDate;
         private DataGridViewTextBoxColumn ReceiptId;
         private DataGridViewCheckBoxColumn IsPaymentCompleted;
+        private DataGridViewTextBoxColumn PaymentDate;
+        private DataGridViewTextBoxColumn PayBefore;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn CreationDate;
     }
 }

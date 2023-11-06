@@ -9,8 +9,10 @@ namespace PSI_TestProject_API.Interfaces
         ICollection<Clients> GetClients();
         Clients GetClient(int id);
         Clients GetClientByInvoice(int invoiceId);
+        Clients GetClientByLogin(string login);
         //ICollection<Invoices> GetInvoicesOfClient(int clientId);
         bool ClientExists(int clientId);
+        bool ClientExistsWithLpgin(string login);
         bool CreateClient(Clients client);
         bool UpdateClient(Clients client);
         bool DeleteClient(Clients client);
