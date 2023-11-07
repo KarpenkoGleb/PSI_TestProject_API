@@ -9,5 +9,6 @@ namespace PSI_WebForms
     internal static class StaticClass
     {
         internal static ClientsDTO ClientObject { get; set; }
+        internal static int InvoiceId { get; set;  }
     }
 }

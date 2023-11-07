@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 //using System.IO;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -26,9 +27,33 @@ namespace PSI_WebForms
 
             int clientId = StaticClass.ClientObject.Id;
 
-            LoadDataOfInvoiceByFiltersAsync(clientId);     
+            LoadDataOfInvoiceByFiltersAsync(clientId);
 
         }
+
+        protected void GridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ViewDetails")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument); // Get the row index
+
+                StaticClass.InvoiceId = Convert.ToInt32(InvoicesGridView.DataKeys[rowIndex]["Id"]); // Get the value from the ID column
+
+                // Redirect to another page with the value from the row
+
+                try
+                {
+                    Response.Redirect("InvoiceDetails.aspx");
+                }
+                catch (ThreadAbortException ex)
+                {
+                    Server.ClearError();
+                }
+
+            }
+
+        }
+
         private async void LoadDataOfInvoiceByFiltersAsync(int clientId)
         {
             try

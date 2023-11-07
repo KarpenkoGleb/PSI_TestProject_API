@@ -1,15 +1,32 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="PSI_WebForms._Default" %>
+﻿<%@ Page Async="true" Title="Детали счета" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InvoiceDetails1.aspx.cs" Inherits="PSI_WebForms.InvoiceDetails1" EnableEventValidation="false" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <main>
-        <section class="row" aria-labelledby="aspnetTitle">
+    <main aria-labelledby="title">
+        <h2 id="title"><%: Title %>.</h2>
+        <div>
+            &nbsp;
+        </div>
+        <h3>Данные по вашему счету </h3>
+        <div>
+            &nbsp;
+        </div>
+        <div>
+            <asp:Label ID="ServiceLabel" runat="server" Text ="Услуга"> </asp:Label>
+            <asp:TextBox ID="ClientNameTextBox" runat="server"> </asp:TextBox>
+            <asp:TextBox ID="ClientSurnameTextBox" Label = "Сумма к оплате" runat="server"> </asp:TextBox>
+            <asp:TextBox ID="ClientPatronymicTextBox" runat="server"> </asp:TextBox>
+        </div>
+
+
+
+        <%--<section class="row" aria-labelledby="aspnetTitle">
             <h1 id="aspnetTitle">ASP.NET</h1>
             <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
             <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-        </section>
+        </section>--%>
 
-        <div class="row">
+        <%--<div class="row">
             <section class="col-md-4" aria-labelledby="gettingStartedTitle">
                 <h2 id="gettingStartedTitle">Getting started</h2>
                 <p>
@@ -38,7 +55,7 @@
                     <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
                 </p>
             </section>
-        </div>
+        </div>--%>
     </main>
 
 </asp:Content>

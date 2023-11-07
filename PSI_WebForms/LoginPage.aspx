@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Страница входа" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="PSI_WebForms.LoginPage" Async="true" EnableEventValidation="false"  %>
+﻿<%@ Page Async="true" Title="Страница входа" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="PSI_WebForms.LoginPage" EnableEventValidation="false"  %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace PSI_WebForms
 {
-    public partial class _Default : Page
+    public partial class InvoiceDetails1 : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

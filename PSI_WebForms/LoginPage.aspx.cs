@@ -22,7 +22,6 @@ namespace PSI_WebForms
             AuthorizationByLoginAsync(login);
         }
 
-
         private async void AuthorizationByLoginAsync(string login)
         {
             try
@@ -30,8 +29,6 @@ namespace PSI_WebForms
                 var data = await GetDataOfClientByLoginAsync(login);
 
                 StaticClass.ClientObject = data;
-
-                Response.Redirect("ClientsInvoices.aspx");
 
                 //------------
 
@@ -46,6 +43,8 @@ namespace PSI_WebForms
             {
                 //MessageBox.Show($"Error: {ex.Message}");
             }
+
+            Response.Redirect("ClientsInvoices.aspx");
         }
 
         private async Task<ClientsDTO> GetDataOfClientByLoginAsync(string login)

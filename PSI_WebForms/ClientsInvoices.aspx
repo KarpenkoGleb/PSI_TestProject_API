@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title="Ваши данные" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClientsInvoices.aspx.cs" Inherits="PSI_WebForms.ClientsInvoices" %>
+﻿<%@ Page Async="true" Title="Ваши данные" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClientsInvoices.aspx.cs" Inherits="PSI_WebForms.ClientsInvoices" EnableEventValidation="false" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">
@@ -18,19 +18,19 @@
         <div>
             &nbsp;
         </div>
-        <asp:GridView ID="InvoicesGridView" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered">
-       <Columns>
-           <asp:BoundField DataField="Id" HeaderText="Id счета" />
-           <asp:BoundField DataField="Service.Service" HeaderText="Сервис" />
-           <asp:BoundField DataField="Client.Login" HeaderText="Логин клиента" />
-           <asp:BoundField DataField="Amount" HeaderText="Сумма" />
-           <asp:BoundField DataField="CreationDate" HeaderText="Дата создания счета" />
-           <asp:BoundField DataField="PayBefore" HeaderText="Оплатить до" />
-           <asp:BoundField DataField="PaymentDate" HeaderText="Дата оплаты" />
-           <asp:BoundField DataField="receiptId" HeaderText="Квитанция (N)" />
-           <asp:BoundField DataField="IsPaymentCompleted" HeaderText="Оплачено" />
-       </Columns>
-
+        <asp:GridView ID="InvoicesGridView" runat="server" OnRowCommand="GridView_RowCommand" DataKeyNames="Id" AutoGenerateColumns="false" CssClass="table table-striped table-bordered">
+           <Columns>           
+               <asp:ButtonField Text="Детали счета" CommandName="ViewDetails" ButtonType="Button" />
+               <asp:BoundField DataField="Id" HeaderText="Id счета" Visible = "false"/>
+               <asp:BoundField DataField="Service.Service" HeaderText="Сервис" />
+               <asp:BoundField DataField="Client.Login" HeaderText="Логин клиента" />
+               <asp:BoundField DataField="Amount" HeaderText="Сумма" />
+               <asp:BoundField DataField="CreationDate" HeaderText="Дата создания счета" />
+               <asp:BoundField DataField="PayBefore" HeaderText="Оплатить до" />
+               <asp:BoundField DataField="PaymentDate" HeaderText="Дата оплаты" />
+               <asp:BoundField DataField="receiptId" HeaderText="Квитанция (N)" />
+               <asp:BoundField DataField="IsPaymentCompleted" HeaderText="Оплачено" />
+           </Columns>
         </asp:GridView>
     </main>
 </asp:Content>
