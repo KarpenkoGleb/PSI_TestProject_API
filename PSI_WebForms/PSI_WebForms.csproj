@@ -152,7 +152,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="InvoiceDetails1.aspx" />
+    <Content Include="Draft.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -240,12 +240,12 @@
     <Compile Include="ClientsInvoices.aspx.designer.cs">
       <DependentUpon>ClientsInvoices.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InvoiceDetails1.aspx.cs">
-      <DependentUpon>InvoiceDetails1.aspx</DependentUpon>
+    <Compile Include="Draft.aspx.cs">
+      <DependentUpon>Draft.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="InvoiceDetails1.aspx.designer.cs">
-      <DependentUpon>InvoiceDetails1.aspx</DependentUpon>
+    <Compile Include="Draft.aspx.designer.cs">
+      <DependentUpon>Draft.aspx</DependentUpon>
     </Compile>
     <Compile Include="DTO\ClientsDTO.cs" />
     <Compile Include="DTO\InvoicesDTO.cs" />

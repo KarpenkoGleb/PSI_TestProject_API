@@ -31,6 +31,12 @@
                <asp:BoundField DataField="receiptId" HeaderText="Квитанция (N)" />
                <asp:BoundField DataField="IsPaymentCompleted" HeaderText="Оплачено" />
            </Columns>
-        </asp:GridView>
+        </asp:GridView>        
+        <div>
+            &nbsp;
+        </div>
+        <div>
+            <asp:Button ID="RefreshButton" runat="server" OnClick = "RefreshButton_Click" Text = "Обновить"/>
+        </div>
     </main>
 </asp:Content>

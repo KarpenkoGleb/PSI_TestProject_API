@@ -1,22 +1,42 @@
-﻿<%@ Page Async="true" Title="Детали счета" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InvoiceDetails1.aspx.cs" Inherits="PSI_WebForms.InvoiceDetails1" EnableEventValidation="false" %>
+﻿<%@ Page Async="true" Title="Детали счета" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Draft.aspx.cs" Inherits="PSI_WebForms.Draft" EnableEventValidation="false" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main aria-labelledby="title">
-        <h2 id="title"><%: Title %>.</h2>
-        <div>
-            &nbsp;
-        </div>
         <h3>Данные по вашему счету </h3>
-        <div>
-            &nbsp;
-        </div>
-        <div>
-            <asp:Label ID="ServiceLabel" runat="server" Text ="Услуга"> </asp:Label>
-            <asp:TextBox ID="ClientNameTextBox" runat="server"> </asp:TextBox>
-            <asp:TextBox ID="ClientSurnameTextBox" Label = "Сумма к оплате" runat="server"> </asp:TextBox>
-            <asp:TextBox ID="ClientPatronymicTextBox" runat="server"> </asp:TextBox>
-        </div>
+        <%--<body>
+            <form id="myForm" runat="server" class="container">--%>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtFirstName">First Name:</label>
+                            <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtLastName">Last Name:</label>
+                            <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" />
+                        </div>
+                    </div>
+                    <!-- Add more form groups as needed -->                    
+                </div>
+                <div>
+                    &nbsp;
+                </div>
+
+                <div class="row">                    
+                    <div class="col-md-12">
+                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" CssClass="btn btn-primary" />
+                    </div>
+                </div>
+            <%--</form>--%>
+
+            <!-- Add the Bootstrap JS and jQuery scripts if needed -->
+            <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>--%>
+        <%--</body>--%>
 
 
 

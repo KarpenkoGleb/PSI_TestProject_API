@@ -15,31 +15,13 @@ namespace PSI_WebForms
     {
 
         /// <summary>
-        /// ServiceLabel control.
+        /// ServiceNameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ServiceLabel;
-
-        /// <summary>
-        /// ClientNameTextBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ClientNameTextBox1;
-
-        /// <summary>
-        /// AmountLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AmountLabel;
+        protected global::System.Web.UI.WebControls.TextBox ServiceNameTextBox;
 
         /// <summary>
         /// AmountTextBox control.
@@ -51,15 +33,6 @@ namespace PSI_WebForms
         protected global::System.Web.UI.WebControls.TextBox AmountTextBox;
 
         /// <summary>
-        /// CreationDateLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CreationDateLabel;
-
-        /// <summary>
         /// CreationDateTextBox control.
         /// </summary>
         /// <remarks>
@@ -67,15 +40,6 @@ namespace PSI_WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CreationDateTextBox;
-
-        /// <summary>
-        /// PayBeforeLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PayBeforeLabel;
 
         /// <summary>
         /// PayBeforeTextBox control.
@@ -87,13 +51,13 @@ namespace PSI_WebForms
         protected global::System.Web.UI.WebControls.TextBox PayBeforeTextBox;
 
         /// <summary>
-        /// ReceiptIdLabel control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ReceiptIdLabel;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// ReceiptIdTextBox control.
@@ -103,6 +67,15 @@ namespace PSI_WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ReceiptIdTextBox;
+
+        /// <summary>
+        /// PayButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PayButton;
 
         /// <summary>
         /// BackToInvoicesListButton control.

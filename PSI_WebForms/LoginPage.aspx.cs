@@ -15,11 +15,19 @@ namespace PSI_WebForms
 
         }
 
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            //LoginButton.BackColor = System.Drawing.ColorTranslator.FromHtml("#0a7b4c");
+        }
+
         protected void LoginButton_Click(object sender, EventArgs e)
         {            
             string login = LoginTextBox.Text;
 
-            AuthorizationByLoginAsync(login);
+            if(login != null && login != "")
+            {
+                AuthorizationByLoginAsync(login);
+            }
         }
 
         private async void AuthorizationByLoginAsync(string login)
@@ -43,8 +51,14 @@ namespace PSI_WebForms
             {
                 //MessageBox.Show($"Error: {ex.Message}");
             }
+            try
+            {
+                Response.Redirect("ClientsInvoices.aspx");
+            }
+            catch
+            {
 
-            Response.Redirect("ClientsInvoices.aspx");
+            }
         }
 
         private async Task<ClientsDTO> GetDataOfClientByLoginAsync(string login)

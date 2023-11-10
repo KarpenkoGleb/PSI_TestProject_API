@@ -10,31 +10,70 @@
         <div>
             &nbsp;
         </div>
-        <div>
-            <asp:Label ID="ServiceLabel" runat="server" Text ="Услуга"> </asp:Label>
-            <asp:TextBox ID="ClientNameTextBox1" runat="server"> </asp:TextBox>
-        </div>
-        <div>
-            <asp:Label ID="AmountLabel" runat="server" Text ="Сумма к оплате"> </asp:Label>
-            <asp:TextBox ID="AmountTextBox" runat="server"> </asp:TextBox>
-        </div>
-        <div>
-            <asp:Label ID="CreationDateLabel" runat="server" Text ="Дата выставления"> </asp:Label>
-            <asp:TextBox ID="CreationDateTextBox" runat="server"> </asp:TextBox>
-        </div>
-        <div>
-            <asp:Label ID="PayBeforeLabel" runat="server" Text ="Оплатить до"> </asp:Label>
-            <asp:TextBox ID="PayBeforeTextBox" runat="server"> </asp:TextBox>
-        </div>
-        <div>
-            <asp:Label ID="ReceiptIdLabel" runat="server" Text ="Номер квитанции об оплате"> </asp:Label>
-            <asp:TextBox ID="ReceiptIdTextBox" runat="server"> </asp:TextBox>
-        </div>
-        <div>
-            &nbsp;
-        </div>
-        <div>
-            <asp:Button ID="BackToInvoicesListButton" runat="server" OnClick = "BackToInvoicesListButton_Click" Text = "Вернуться к списку счетов" />
-        </div>
+        
+        <%--<form id="myForm" runat="server" class="container">--%>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ServiceNameTextBox">Услуга</label>
+                        <asp:TextBox ID="ServiceNameTextBox" runat="server" CssClass="form-control" Enabled ="false"/> 
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="AmountTextBox">Сумма к оплате</label>
+                        <asp:TextBox ID="AmountTextBox" runat="server" CssClass="form-control" Enabled ="false"/> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="CreationDateTextBox">Дата выставления</label>
+                        <asp:TextBox ID="CreationDateTextBox" runat="server" CssClass="form-control" Enabled ="false"/> 
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="PayBeforeTextBox">Оплатить до</label>
+                        <asp:TextBox ID="PayBeforeTextBox" runat="server" CssClass="form-control" Enabled ="false"/> 
+                    </div>
+                </div>
+            </div>     
+            <div class="row">
+                <div class="col-md-6">
+                     <div class="form-group">
+                         <label for="ReceiptIdTextBox">Номер квитанции об оплате</label>
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <asp:TextBox ID="ReceiptIdTextBox" runat="server" CssClass="form-control" OnTextChanged="ReceiptIdTextBox_TextChanged" AutoPostBack="true"/> 
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="ReceiptIdTextBox" EventName="TextChanged" />
+                                </Triggers>
+                            </asp:UpdatePanel>
+                     </div>
+                </div>
+            </div>           
+        
+            <div>
+                &nbsp;
+            </div>
+
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <asp:Button ID="PayButton" runat="server" OnClick = "PayButton_Click" Text = "Оплатить" style="color: white;"/>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <asp:Button ID="BackToInvoicesListButton" runat="server" OnClick = "BackToInvoicesListButton_Click" Text = "Вернуться к списку счетов" />
+                    </div>
+                </div>
+            </div>    
+        <%--</form>--%>
     </main>
 </asp:Content>

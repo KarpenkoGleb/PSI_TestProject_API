@@ -49,9 +49,14 @@ namespace PSI_WebForms
                 {
                     Server.ClearError();
                 }
-
             }
+        }
 
+        protected void RefreshButton_Click(object sender, EventArgs e)
+        {
+            int clientId = StaticClass.ClientObject.Id;
+
+            LoadDataOfInvoiceByFiltersAsync(clientId);
         }
 
         private async void LoadDataOfInvoiceByFiltersAsync(int clientId)
