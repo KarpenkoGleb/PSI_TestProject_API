@@ -46,18 +46,24 @@ namespace PSI_WebForms
 
                 ClientsDTO reconvertData = JsonSerializer.Deserialize<ClientsDTO>(jsonDto);
 
+                try
+                {
+                    Response.Redirect("ClientsInvoices.aspx");
+                }
+                catch
+                {
+                    Server.ClearError();
+                }
+
             }
             catch (Exception ex)
             {
-                //MessageBox.Show($"Error: {ex.Message}");
-            }
-            try
-            {
-                Response.Redirect("ClientsInvoices.aspx");
-            }
-            catch
-            {
+                // Assume there is a problem, and you want to inform the user
+                string message = ex.Message;    //"There was a problem processing your request. Please try again.";
 
+                // RegisterStartupScript is used to inject JavaScript into the page
+                // The JavaScript here displays an alert with the specified message
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "showMessage", $"alert('{message}');", true);
             }
         }
 
@@ -77,7 +83,7 @@ namespace PSI_WebForms
                 }
                 else
                 {
-                    throw new Exception("Failed to retrieve data from the API.");
+                    throw new Exception("Login is incorrect or we faced with problem while trying to retrieve data from the API.");
                 }
             }
         }

@@ -1,8 +1,9 @@
-﻿<%@ Page Async="true" Title="Страница входа" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="PSI_WebForms.LoginPage" EnableEventValidation="false"  %>
+﻿<%@ Page Async="true"  Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="PSI_WebForms.LoginPage" EnableEventValidation="false"  %>
 
+<%--Title="Страница входа"--%>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">
-        <h2 id="title"><%: Title %>.</h2> 
+        <h2>Страница входа</h2> 
         <%-- without EnableEventValidation="false" application falls with exception "System.InvalidOperationException: 'RegisterForEventValidation can only be called during Render();'" --%>
         <div>
             &nbsp;

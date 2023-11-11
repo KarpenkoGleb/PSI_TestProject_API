@@ -59,6 +59,11 @@ namespace PSI_WebForms
             LoadDataOfInvoiceByFiltersAsync(clientId);
         }
 
+        protected void FilterButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private async void LoadDataOfInvoiceByFiltersAsync(int clientId)
         {
             try

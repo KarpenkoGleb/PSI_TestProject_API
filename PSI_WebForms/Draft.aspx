@@ -1,5 +1,6 @@
-﻿<%@ Page Async="true" Title="Детали счета" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Draft.aspx.cs" Inherits="PSI_WebForms.Draft" EnableEventValidation="false" %>
+﻿<%@ Page Async="true"  Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Draft.aspx.cs" Inherits="PSI_WebForms.Draft" EnableEventValidation="false" %>
 
+<%--Title="Детали счета"--%>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main aria-labelledby="title">

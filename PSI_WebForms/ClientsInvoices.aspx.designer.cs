@@ -42,6 +42,78 @@ namespace PSI_WebForms
         protected global::System.Web.UI.WebControls.TextBox ClientPatronymicTextBox;
 
         /// <summary>
+        /// ServiceFilter1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ServiceFilter1;
+
+        /// <summary>
+        /// LoginFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LoginFilter;
+
+        /// <summary>
+        /// ddlIsPaymentCompletedFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlIsPaymentCompletedFilter;
+
+        /// <summary>
+        /// txtCreationDateFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCreationDateFilter;
+
+        /// <summary>
+        /// calCreationDateExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender calCreationDateExtender;
+
+        /// <summary>
+        /// PaymentDateFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PaymentDateFilter;
+
+        /// <summary>
+        /// calPaymentDateExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender calPaymentDateExtender;
+
+        /// <summary>
+        /// FilterButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button FilterButton;
+
+        /// <summary>
         /// InvoicesGridView control.
         /// </summary>
         /// <remarks>

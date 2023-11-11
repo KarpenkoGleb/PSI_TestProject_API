@@ -1,8 +1,9 @@
-﻿<%@ Page Async="true" Title="Детали счета" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InvoiceDetails.aspx.cs" Inherits="PSI_WebForms.InvoiceDetails" EnableEventValidation="false" %>
+﻿<%@ Page Async="true"  Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="InvoiceDetails.aspx.cs" Inherits="PSI_WebForms.InvoiceDetails" EnableEventValidation="false" %>
 
+<%--Title="Детали счета"--%>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main aria-labelledby="title">
-        <h2 id="title"><%: Title %>.</h2>
+        <h2>Детали счета</h2>
         <div>
             &nbsp;
         </div>
