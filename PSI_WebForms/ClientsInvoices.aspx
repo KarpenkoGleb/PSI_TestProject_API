@@ -23,13 +23,15 @@
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="ServiceNameLabel">Услуга</label>
-                    <asp:TextBox ID="ServiceFilter1" runat="server" CssClass="form-control"/> 
+                    <asp:DropDownList ID="ddlServiceFilter" runat="server" DataTextField="ServiceNameForText" DataValueField="ServiceIdForValue" 
+                        CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlServiceFilter_SelectedIndexChanged"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="LoginLabel">Логин</label>
-                    <asp:TextBox ID="LoginFilter" runat="server" CssClass="form-control"/> 
+                    <asp:DropDownList ID="ddlLoginFilter" runat="server" DataTextField="LoginForText" DataValueField="ClientIdForValue" 
+                        CssClass="form-control"></asp:DropDownList>
                 </div>
             </div>
             <div class="col-md-2">

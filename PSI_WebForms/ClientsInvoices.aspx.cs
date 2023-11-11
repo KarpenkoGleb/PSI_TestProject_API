@@ -2,6 +2,7 @@
 using PSI_WebForms.DTO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 //using System.IO;
 using System.Net.Http;
 using System.Threading;
@@ -27,7 +28,7 @@ namespace PSI_WebForms
 
             int clientId = StaticClass.ClientObject.Id;
 
-            LoadDataOfInvoiceByFiltersAsync(clientId);
+            LoadDataOfInvoiceByFiltersAsync(clientId, null, null, null, null);
 
         }
 
@@ -51,12 +52,20 @@ namespace PSI_WebForms
                 }
             }
         }
+        protected void ddlServiceFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
 
         protected void RefreshButton_Click(object sender, EventArgs e)
         {
             int clientId = StaticClass.ClientObject.Id;
 
-            LoadDataOfInvoiceByFiltersAsync(clientId);
+            LoadDataOfInvoiceByFiltersAsync(clientId,null, null, null, null);
         }
 
         protected void FilterButton_Click(object sender, EventArgs e)
@@ -64,11 +73,39 @@ namespace PSI_WebForms
 
         }
 
-        private async void LoadDataOfInvoiceByFiltersAsync(int clientId)
+        private async void LoadDataOfInvoiceByFiltersAsync(int clientId, int? serviceId, DateTime? creationDate, DateTime? paymentDate, bool? isPaymentCompleted)
         {
             try
             {
-                var data = await GetDataOfInvoiceByFiltersAsync(clientId);
+                var data = await GetDataOfInvoiceByFiltersAsync(clientId, serviceId, creationDate, paymentDate, isPaymentCompleted);
+
+                StaticClass.Invoices = data;
+
+                StaticClass.ClientsFromInvoices = data
+                    .Select(parent => parent.Client)
+                    .Distinct()
+                    .ToList();
+
+                StaticClass.ServicesFromInvoices = data
+                    .Select(parent => parent.Service)
+                    .Distinct()
+                    .ToList();
+
+                if (StaticClass.ServicesFromInvoices != null)
+                {
+                    ddlServiceFilter.DataSource = StaticClass.ServicesFromInvoices;
+                    ddlServiceFilter.DataTextField = "Service"; // Set the property for text
+                    ddlServiceFilter.DataValueField = "Id"; // Set the property for value
+                    ddlServiceFilter.DataBind();
+                }
+
+                if (StaticClass.ClientsFromInvoices != null)
+                {
+                    ddlLoginFilter.DataSource = StaticClass.ClientsFromInvoices;
+                    ddlLoginFilter.DataTextField = "Login"; // Set the property for text
+                    ddlLoginFilter.DataValueField = "Id"; // Set the property for value
+                    ddlLoginFilter.DataBind();
+                }
 
                 InvoicesGridView.DataSource = data;
                 InvoicesGridView.DataBind();
@@ -79,7 +116,7 @@ namespace PSI_WebForms
                 //MessageBox.Show($"Error: {ex.Message}");
             }
         }
-        private async Task<List<InvoicesDTO>> GetDataOfInvoiceByFiltersAsync(int clientId)
+        private async Task<List<InvoicesDTO>> GetDataOfInvoiceByFiltersAsync(int clientId, int? serviceId, DateTime? creationDate, DateTime? paymentDate, bool? isPaymentCompleted)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -87,10 +124,10 @@ namespace PSI_WebForms
 
                 HttpResponseMessage response = await client.GetAsync(string.Format("api/Invoices/byfilters?clientId={0}&serviceId={1}&creationDate={2}&paymentDate={3}&isPaymentCompleted={4}"
                                                                                     , clientId
-                                                                                    , null
-                                                                                    , null
-                                                                                    , null
-                                                                                    , null
+                                                                                    , serviceId
+                                                                                    , creationDate
+                                                                                    , paymentDate
+                                                                                    , isPaymentCompleted
                                                                                     )); // Adjust the URL to match your API's endpoint.
                 if (response.IsSuccessStatusCode)
                 {

@@ -42,22 +42,22 @@ namespace PSI_WebForms
         protected global::System.Web.UI.WebControls.TextBox ClientPatronymicTextBox;
 
         /// <summary>
-        /// ServiceFilter1 control.
+        /// ddlServiceFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ServiceFilter1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlServiceFilter;
 
         /// <summary>
-        /// LoginFilter control.
+        /// ddlLoginFilter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LoginFilter;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLoginFilter;
 
         /// <summary>
         /// ddlIsPaymentCompletedFilter control.
