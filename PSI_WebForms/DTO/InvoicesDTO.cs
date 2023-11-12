@@ -10,7 +10,8 @@ namespace PSI_WebForms.DTO
         public int ServiceId { get; set; }
         public int ClientId { get; set; }
         public int Amount { get; set; }
-        public System.DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }
+        //public System.DateTime CreationDate { get; set; }
         public DateTime PayBefore { get; set; }
         public DateTime? PaymentDate { get; set; }
         public int? receiptId { get; set; }

@@ -150,7 +150,7 @@ namespace PSI_WebForms
         private async void UpdateInvoiceAsync()
         {
             StaticClass.InvoiceObject.receiptId = Int32.Parse(ReceiptIdTextBox.Text);
-            StaticClass.InvoiceObject.PaymentDate = DateTime.Now;
+            StaticClass.InvoiceObject.PaymentDate = DateTime.Today;
             StaticClass.InvoiceObject.IsPaymentCompleted = true;
 
             InvoicesDTO updatedInvoice = StaticClass.InvoiceObject;

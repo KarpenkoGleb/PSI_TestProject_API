@@ -24,23 +24,23 @@
                 <div class="form-group">
                     <label for="ServiceNameLabel">Услуга</label>
                     <asp:DropDownList ID="ddlServiceFilter" runat="server" DataTextField="ServiceNameForText" DataValueField="ServiceIdForValue" 
-                        CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlServiceFilter_SelectedIndexChanged"></asp:DropDownList>
+                        CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
                 </div>
             </div>
-            <div class="col-md-2">
+            <%--<div class="col-md-2">
                 <div class="form-group">
                     <label for="LoginLabel">Логин</label>
                     <asp:DropDownList ID="ddlLoginFilter" runat="server" DataTextField="LoginForText" DataValueField="ClientIdForValue" 
                         CssClass="form-control"></asp:DropDownList>
                 </div>
-            </div>
+            </div>--%>
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="IsPaymentCompletedLabel">Оплачено</label>
                     <asp:DropDownList ID="ddlIsPaymentCompletedFilter" runat="server" CssClass="form-control"> 
                         <asp:ListItem Text="Не выбрано" Value=null> </asp:ListItem> 
                         <asp:ListItem Text="Оплачено" Value=true> </asp:ListItem> 
-                        <asp:ListItem Text="Не оплачено" Value=fasle> </asp:ListItem> 
+                        <asp:ListItem Text="Не оплачено" Value=false> </asp:ListItem> 
                     </asp:DropDownList>
                 </div>
             </div>
@@ -70,7 +70,7 @@
         </div> 
         <h5>Данные по вашим счетам</h5>
         <asp:GridView ID="InvoicesGridView" runat="server" OnRowCommand="GridView_RowCommand" DataKeyNames="Id" AutoGenerateColumns="false" 
-                    CssClass="table table-striped table-bordered">
+                    CssClass="table table-striped table-bordered" OnRowDataBound="InvoicesGridView_RowDataBound">
            <Columns>           
                <asp:ButtonField Text="Детали счета" CommandName="ViewDetails" ButtonType="Button" />
                <asp:BoundField DataField="Id" HeaderText="Id счета" Visible = "false"/>
